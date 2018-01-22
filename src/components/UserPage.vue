@@ -1,6 +1,6 @@
 <template>
   <div class="User">
-    You have successfully logged in
+    You have successfully logged in!
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {
   name: 'User',
   data() {
     return {
-      msg: 'some new component, yo'
+      msg: 'Test message'
     }
   },
   created() {
