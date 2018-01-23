@@ -10,7 +10,7 @@
       <label for='form-switch'>No organization profile? Click here to register!</label>
     </form>
     <form id='register-form' action="" method='post'>
-      <h1>Register Your Organization</h1>
+      <h2>Register Your Organization</h2>
       <input type="text" placeholder="First Name" required>
       <input type="text" placeholder="Last Name" required>
       <input type="email" placeholder="Email Address" required>
@@ -73,7 +73,7 @@ h1 {
   background-repeat: no-repeat;
   padding-top: 50px;
   padding-bottom: 50px;
-  min-height: 585px;
+  min-height: 560px;
 }
 form {
   margin: 0 auto;

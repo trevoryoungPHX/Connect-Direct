@@ -17,8 +17,6 @@ import SplashFooter from './SplashFooter.vue'
 export default {
   name: 'SeekerSplash',
   components: { SeekerLoginNav, SeekerLogin, SplashFooter },
-  data() {
-  },
   methods: {
   }
 }

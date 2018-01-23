@@ -1,6 +1,6 @@
 <template>
   <div class="User">
-    User has successfully logged in!
+    Admin has successfully logged in!
   </div>
 </template>
 

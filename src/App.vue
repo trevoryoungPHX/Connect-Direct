@@ -10,9 +10,7 @@
     </div>
 </template>
 
-<script>
-import Vue from 'vue';
-import VueCarousel from 'vue-carousel';
+<script> 
 
 export default {
   name: 'App'

@@ -2,7 +2,7 @@
   <div class="splashNav">
     <div id="container">
     <img height="100px" src="../assets/test direct connect logo.png" />
-    <router-link to="seeker-splash">Recruit Professionals</router-link>
+    <router-link to="/seeker-splash" exact>Recruit Professionals</router-link>
   </div>
   </div>
 </template>

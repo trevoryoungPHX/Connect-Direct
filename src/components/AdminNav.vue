@@ -1,10 +1,8 @@
 <template>
-  <div class="splash">
     <div class="adminNav">
     <div id="container">
     <img height="100px" src="../assets/test direct connect logo.png" />
-    <router-link to="/">User Login</router-link>
-  </div>
+    <router-link to="/">Home</router-link>
   </div>
 </div>
 </template>
@@ -20,12 +18,20 @@ export default {
 </script>
 
 <style scoped>
+
+.homeButton {
+  font-size: 20px;
+  padding-bottom: 0;
+
+}
+
 .adminNav {
   background-color: #FDF1D7;
   color: white;
   text-align: left;
-  height: auto ;
+  height: 150px;
   width: 100%;
+  margin-bottom: 75px;
 }
 #container {
   padding-left: 10%;
