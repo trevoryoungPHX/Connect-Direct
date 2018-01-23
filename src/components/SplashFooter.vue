@@ -1,8 +1,8 @@
 <template>
   <div class = "wrapper">
   <footer class="splashFooter">
-      &copy; 2018 Connect Direct <br />
-      <router-link to="admin-login">Admin Portal</router-link>
+      <p>&copy; 2018 Connect Direct </p>
+      <p><router-link to="admin-login">Admin Portal</router-link></p>
   </footer>
 </div>
 </template>

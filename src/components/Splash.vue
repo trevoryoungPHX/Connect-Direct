@@ -12,6 +12,8 @@
 import UserLogin from './UserLogin.vue'
 import SplashNav from './SplashNav.vue'
 import SplashFooter from './SplashFooter.vue'
+
+
 export default {
   name: 'Splash',
   components: { UserLogin, SplashNav, SplashFooter },
@@ -25,8 +27,7 @@ export default {
 <style scoped>
 .splash {
   background-color: #2d3e49;
-  min-height: 800px;
-  height: auto;
+  height: 100%;
 }
 
 </style>

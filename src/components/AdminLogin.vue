@@ -1,12 +1,18 @@
 <template>
   <div class="SeekerLogin">
-    Test Admin Login
+    <AdminNav></AdminNav>
+    <SplashFooter></SplashFooter>
   </div>
 </template>
 
 <script>
+
+import AdminNav from './AdminNav.vue'
+import SplashFooter from './SplashFooter.vue'
+
 export default {
   name: 'AdminLogin',
+  components: { AdminNav, SplashFooter },
   data() {
   },
   methods: {

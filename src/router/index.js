@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Splash from '@/components/Splash'
 import UserPage from '@/components/UserPage'
-import SeekerLogin from '@/components/SeekerLogin'
+import SeekerSplash from '@/components/SeekerSplash'
 import AdminLogin from '@/components/AdminLogin'
 
 Vue.use(Router)
@@ -20,9 +20,9 @@ export default new Router({
       component: UserPage
     },
     {
-      path: '/seeker-login',
-      name: 'SeekerLogin',
-      component: SeekerLogin
+      path: '/seeker-splash',
+      name: 'SeekerSplash',
+      component: SeekerSplash
     },
     {
       path: '/admin-login',

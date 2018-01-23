@@ -11,6 +11,9 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import VueCarousel from 'vue-carousel';
+
 export default {
   name: 'App'
 }
