@@ -60,7 +60,9 @@ export default {
 <style scoped>
 
 .SeekerLogin {
-  background-color: #2d3e49;
+  background-image: url(../assets/image3.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
    -moz-animation: fadein 2s; /* Firefox < 16 */
     -ms-animation: fadein 2s; /* Internet Explorer */
@@ -98,12 +100,12 @@ export default {
           to   { opacity: 1; }
       }
 .circleBorder {
-  border: 20px solid black;
+  border: 20px solid #2d3e49;
   width: 690px;
   margin-bottom: 50px;
   border-radius: 700px;
   margin-left: auto;
-  background-color: #FDEFD2;
+  background-color: white;
   margin-right: auto;
   -webkit-box-shadow: 1px 1px 20px 4px rgba(0,0,0,0.58);
   -moz-box-shadow: 1px 1px 20px 4px rgba(0,0,0,0.58);
@@ -153,6 +155,7 @@ input {
   padding: 10px;
   width: 80%;
   border: 1px solid #ccc;
+  background-color: #FDEFD2;
   font-family: 'Questrial', sans-serif;
 
 }

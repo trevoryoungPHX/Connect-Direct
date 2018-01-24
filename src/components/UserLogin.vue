@@ -6,7 +6,7 @@
       <input v-model="email" type="text" placeholder="Email Address" required>
       <input v-model="password" type="password" placeholder="Password" required>
       <button type='submit'>Let's Do This</button><br />
-      <span id = "error" v-if="errMsg">Invalid login credentials.<br />Please try again.</span><br /><br />
+      <span id = "error" v-if="errMsg">Invalid login credentials. Please try again.</span><br /><br />
       <label for='form-switch'>Not a member? Click here to register!</label>
     </form>
     <form id='register-form' action="" method='post'>

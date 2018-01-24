@@ -6,7 +6,7 @@
       <input v-model="email" type="text" placeholder="Email Address" required>
       <input v-model="password" type="password" placeholder="Password" required>
       <button type='submit'>Find Professionals</button><br />
-      <span id = "error" v-if="errMsg">Invalid login credentials.<br />Please try again.</span><br /><br />
+      <span id = "error" v-if="errMsg">Invalid login credentials. Please try again.</span><br /><br />
       <label for='form-switch'>No organization profile? Click here to register!</label>
     </form>
     <form id='register-form' action="" method='post'>
@@ -62,7 +62,11 @@ export default {
 
 <style scoped>
 
+h2 {
+  text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
+  font-size: 40px;
 
+}
 h1 {
   text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
   font-size: 45px;

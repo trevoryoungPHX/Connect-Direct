@@ -31,7 +31,7 @@ export default {
   text-align: left;
   height: 150px;
   width: 100%;
-  margin-bottom: 75px;
+  margin-bottom: 20px;
 }
 #container {
   padding-left: 10%;
