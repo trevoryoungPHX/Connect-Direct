@@ -5,12 +5,13 @@
       <div id = 'adminFormHolder'>
         <form id='login-form' @submit.prevent="adminLogin">
           <h1>Admin Login</h1>
-          <input v-model="email" type="text" placeholder="Email Address" required>
-          <input v-model="password" type="password" placeholder="Password" required><br /><br />
-          <button type='submit'>Access Admin Panel</button><br />
-          <span id = "error" v-if="errMsg">Invalid login credentials.<br />Please try again.</span><br /><br />
+          <input v-model="email" type="email" placeholder="Email Address" required>
+          <input v-model="password" type="password" placeholder="Password" required>
+          <button type='submit'>Access Admin Panel</button>
+          <span id = "error" v-if="errMsg">Invalid login credentials.<br />Please try again.</span><br />
+          <img width="70%" src="../assets/test direct connect logo.png" /><br /><br />
+
         </form>
-        <img height="215px" src="../assets/test direct connect logo.png" />
       </div>
     </div>
     <SplashFooter></SplashFooter>
@@ -99,50 +100,48 @@ export default {
           to   { opacity: 1; }
       }
 .circleBorder {
-  border: 20px solid #2d3e49;
-  width: 690px;
+  border: 10px solid #2d3e49;
   margin-bottom: 50px;
   border-radius: 700px;
   margin-left: auto;
+  width: 50%;
+  min-width: 380px;
+  opacity: .85;
+  margin-top: 50px;
   background-color: white;
   margin-right: auto;
   -webkit-box-shadow: 1px 1px 20px 4px rgba(0,0,0,0.58);
   -moz-box-shadow: 1px 1px 20px 4px rgba(0,0,0,0.58);
   box-shadow: 1px 1px 20px 4px rgba(0,0,0,0.58);
 }
+input {
+  margin-bottom: 3px;
+  padding: 10px;
+  width: 90%;
+  background-color: #fdf1d7;
+  border: 1px solid gray;
+  font-family: 'Questrial', sans-serif;
+  font-size: 15px;
+}
+
 button {
   padding: 10px;
   width: 70%;
   font-family: 'Questrial', sans-serif;
   cursor: pointer;
   margin: 20px;
-  font-size: 15px;
+  font-size: 20px;
   background: #1D976C;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
-  border-radius: 2px;
-  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  border: 1.5px solid rgba(0,0,0,0.38);
+  /* border-radius: 2px; */
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
 }
 
-button:hover {
-  padding: 10px;
-  width: 70%;
-  font-family: 'Questrial', sans-serif;
-  cursor: pointer;
-  margin: 20px;
-  background: #1D976C;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  color: white;
-}
-
-
-#adminFormHolder {
-  min-height: 670px;
-}
 form {
   margin: 0 auto;
   width: 300px;
@@ -152,15 +151,14 @@ form {
 input {
   margin-bottom: 3px;
   padding: 10px;
-  width: 80%;
+  font-size: 20px;
+  width: 100%;
   border: 1px solid #ccc;
   background-color: #FDEFD2;
   font-family: 'Questrial', sans-serif;
 
 }
-button {
-  padding: 10px;
-}
+
 label {
   cursor: pointer;
 }
@@ -178,9 +176,9 @@ label {
 }
 
 h1 {
-  padding-top: 50px;
+  padding-top: 10px;
   text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
-  font-size: 50px;
+  font-size: 40px;
 }
 
 </style>

@@ -3,7 +3,7 @@
     <input type='checkbox' id='form-switch'>
     <form id='login-form' @submit.prevent="seekerLogin">
       <h1>Organization Login</h1>
-      <input v-model="email" type="text" placeholder="Email Address" required>
+      <input v-model="email" type="email" placeholder="Email Address" required>
       <input v-model="password" type="password" placeholder="Password" required>
       <button type='submit'>Find Professionals</button><br />
       <span id = "error" v-if="errMsg">Invalid login credentials. Please try again.</span><br /><br />
@@ -77,7 +77,7 @@ h1 {
   background-repeat: no-repeat;
   padding-top: 50px;
   padding-bottom: 50px;
-  min-height: 560px;
+  min-height: 630px;
 }
 form {
   margin: 0 auto;
@@ -98,35 +98,25 @@ input {
   background-color: #fdf1d7;
   border: 1px solid gray;
   font-family: 'Questrial', sans-serif;
+  font-size: 15px;
 }
 
 button {
   padding: 10px;
-  width: 50%;
+  width: 80%;
   font-family: 'Questrial', sans-serif;
   cursor: pointer;
   margin: 20px;
-  font-size: 15px;
+  font-size: 20px;
   background: #1D976C;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
-  border-radius: 2px;
-  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-}
-
-button:hover {
-  padding: 10px;
-  width: 50%;
-  font-family: 'Questrial', sans-serif;
-  cursor: pointer;
-  margin: 20px;
-  background: #1D976C;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  color: white;
+  border: 1.5px solid rgba(0,0,0,0.38);
+  /* border-radius: 2px; */
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
 }
 
 #error {

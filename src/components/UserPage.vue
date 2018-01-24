@@ -4,65 +4,74 @@
     <div class="wrapper">
       <nav class="main-nav">
         <p id="welcomeName">Welcome, Trevor!</p>
-        <form>
-          <div>
-            <div id="filterTypeTitle">Filter By Location</div><br />
-            <input type="search" placeholder="'85251' or 'Scottsdale'" id="" name="">
-            <button>Search</button>
-          </div><br />
-        </form>
         <fieldset>
-          <legend id="filterTypeTitle">Filter By Type</legend><br />
+            <legend id="filterTypeTitle">Search</legend>
+            <input type="search" placeholder="'HealthCare' or 'Engineering'" id="" name=""><br />
+            <button id="filterButton">Find</button>
+        </fieldset>
+        <br />
+        <fieldset>
+            <legend id="filterTypeTitle">Filter By Location</legend>
+            <input type="search" placeholder="'85251' or 'Scottsdale'" id="" name=""><br />
+            <button id="filterButton">Locate</button>
+        </fieldset>
+        <br />
+        <fieldset id="fieldset">
+          <legend id="filterTypeTitle">Filter By Type</legend>
           <div>
-            <input type="checkbox" id="" name="" value="">
+            <input type="checkbox" id="checkbox" name="" value="">
             <label for="">Classroom Speaker</label>
           </div><br />
           <div>
-            <input type="checkbox" id="" name="" value="">
+            <input type="checkbox" id="checkbox" name="" value="">
             <label for="">Company Tour</label>
           </div><br />
           <div>
-            <input type="checkbox" id="" name="" value="">
+            <input type="checkbox" id="checkbox" name="" value="">
             <label for="">Competition Judge</label>
           </div><br />
           <div>
-            <input type="checkbox" id="" name="" value="">
+            <input type="checkbox" id="checkbox" name="" value="">
             <label for="">Conference Speaker</label>
           </div><br />
           <div>
-            <input type="checkbox" id="" name="" value="">
+            <input type="checkbox" id="checkbox" name="" value="">
             <label for="">Job Shadowing</label>
           </div><br />
           <div>
-            <input type="checkbox" id="" name="" value="">
+            <input type="checkbox" id="checkbox" name="" value="">
             <label for="">Materials & Equiptment</label>
           </div><br />
           <div>
-            <input type="checkbox" id="" name="" value="">
+            <input type="checkbox" id="checkbox" name="" value="">
             <label for="">Mentorship</label>
           </div><br />
           <div>
-            <input type="checkbox" id="" name="" value="">
+            <input type="checkbox" id="checkbox" name="" value="">
             <label for="">Mock Interviewing</label>
           </div><br />
           <div>
-            <input type="checkbox" id="" name="" value="">
+            <input type="checkbox" id="checkbox" name="" value="">
             <label for="">Panelist</label>
           </div><br />
           <div>
-            <input type="checkbox" id="" name="" value="">
+            <input type="checkbox" id="checkbox" name="" value="">
             <label for="">Project Review</label>
           </div><br />
           <div>
-            <input type="checkbox" id="" name="" value="">
+            <input type="checkbox" id="checkbox" name="" value="">
             <label for="">Workshop Presenter</label>
           </div><br />
         </fieldset>
       </nav>
       <article class="content">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <img width="100%" id="imageHeader" src="../assets/arrows.jpg" />
+          <Opportunity></Opportunity>
+          <Opportunity></Opportunity>
+          <Opportunity></Opportunity>
+          <Opportunity></Opportunity>
+          <Opportunity></Opportunity>
+
       </article>
       <footer class="main-footer">FOOTER</footer>
     </div>
@@ -72,10 +81,11 @@
 <script>
 
 import UserNav from './UserNav.vue'
+import Opportunity from './Opportunity.vue'
 
 export default {
   name: 'User',
-  components: { UserNav },
+  components: { UserNav, Opportunity },
   data() {
     return {
       msg: 'Test message'
@@ -91,12 +101,41 @@ export default {
 
 <style scoped>
 
+#imageHeader{
+  border-radius:5px;
+  margin-bottom: 15px;
+}
+
+#checkbox {
+  cursor: pointer;
+  width: 15px;
+}
 form {
   font-family: 'Questrial', sans-serif;
 }
 
 input {
   font-family: 'Questrial', sans-serif;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#filterButton {
+  padding: 4px;
+  width: 50%;
+  font-family: 'Questrial', sans-serif;
+  cursor: pointer;
+  font-size: 15px;
+  background: #1D976C;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  border: 1.5px solid rgba(0,0,0,0.38);
+  /* border-radius: 2px; */
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
 }
 
 
@@ -104,15 +143,21 @@ input {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+  padding-bottom: 10px;
 }
 #welcomeName {
   font-weight: bold;
   font-size: 26px;
-  text-decoration: underline;
+  font-style: italic;
 }
 
 fieldset {
+  text-align: center;
+}
+
+#fieldset {
   text-align: left;
+
 }
 
 * {box-sizing: border-box;}
@@ -121,6 +166,7 @@ fieldset {
       background-color: #2d3e49;
         margin-left: 10%;
         margin-right:10%;
+        margin-top: 20px;
     }
 
     .wrapper > * {
@@ -135,10 +181,11 @@ fieldset {
 .content {
   grid-area: content;
   min-width: 300px;
+  background: white;
 }
 .main-nav {
   grid-area: nav;
-  min-width: 200px;
+  min-width: 250px;
 }
 .side {
   grid-area: sidebar;
@@ -151,7 +198,6 @@ fieldset {
 }
 .wrapper {
   display: grid;
-  grid-gap: 5px;
   grid-template-areas:
     "header"
     "nav"
@@ -183,6 +229,7 @@ fieldset {
 
 .User {
   background-color: #2d3e49;
+  border-top-left-radius: 30px;
   min-height: 800px;
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
    -moz-animation: fadein 2s; /* Firefox < 16 */
