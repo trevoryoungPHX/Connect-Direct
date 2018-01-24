@@ -2,21 +2,20 @@
   <div class="SeekerLogin">
     <AdminNav></AdminNav>
     <div class = "circleBorder">
-    <div id = 'adminFormHolder'>
-      <form id='login-form' @submit.prevent="adminLogin">
-        <h1>Admin Login</h1>
-        <input v-model="email" type="text" placeholder="Email Address" required>
-        <input v-model="password" type="password" placeholder="Password" required><br /><br />
-        <button type='submit'>Access Admin Panel</button><br />
-        <span id = "error" v-if="errMsg">Invalid login credentials.<br />Please try again.</span><br /><br />
-      </form>
-      <img height="215px" src="../assets/test direct connect logo.png" />
+      <div id = 'adminFormHolder'>
+        <form id='login-form' @submit.prevent="adminLogin">
+          <h1>Admin Login</h1>
+          <input v-model="email" type="text" placeholder="Email Address" required>
+          <input v-model="password" type="password" placeholder="Password" required><br /><br />
+          <button type='submit'>Access Admin Panel</button><br />
+          <span id = "error" v-if="errMsg">Invalid login credentials.<br />Please try again.</span><br /><br />
+        </form>
+        <img height="215px" src="../assets/test direct connect logo.png" />
       </div>
     </div>
     <SplashFooter></SplashFooter>
+    </div>
   </div>
-  </div>
-
 </template>
 
 <script>
