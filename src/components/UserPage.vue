@@ -7,15 +7,13 @@
           <p id="welcomeName">Welcome,<br /> Trevor!</p>
           <img id ="headshot" src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAsOAAAAJGE0YjUxNTllLTYyYWYtNGE1OS04MWVkLTcyMWI2YjMyZjA3ZA.jpg" /><br /><br />
             <div id = "menu">
-              <a><router-link to="/user-profile" exact>Your Profile</router-link></a><br />
-              <a href="">Log Out</a><br />
-              <a href="">Refer a Professional</a><br />
-              <a href="">Refer an Organization</a><br />
-
+              <a><router-link to="/user-profile" exact>Your Profile</router-link></a><br /><br />
+              <a href="">Log Out</a><br /><br />
+              <a href="">Invite</a><br />
             </div>
           <br />
           <fieldset>
-              <legend id="filterTypeTitle">Search</legend>
+              <legend id="filterTypeTitle">Search <img height="15px"src="../assets/searchwhite.png" /></legend>
               <input type="search" placeholder="'Health Care' or 'Engineering'" id="search" name=""><br />
               <button id="filterButton">Find</button>
           </fieldset>
@@ -23,13 +21,14 @@
           <hr />
           <br />
           <fieldset>
-              <legend id="filterTypeTitle">Filter By Location</legend>
+              <legend id="filterTypeTitle">Filter By Location <img height="15px"src="../assets/locationwhite.png" /></legend>
               <input type="search" placeholder="'85251' or 'Scottsdale'" id="search" name=""><br />
               <button id="filterButton">Locate</button>
           </fieldset>
           <br />
+          <hr />
           <br />
-          <h3 id="filterTypeTitle2">Filter By Type</h3>
+          <br /><h3 id="filterTypeTitle2">Filter By Type <img height="15px"src="../assets/typewhite.png" /></h3>
           <div class="control-group">
             <label class="control control-checkbox">
                 Classroom Speaker
@@ -85,7 +84,7 @@
               Workshop Presenter
                     <input type="checkbox" name="" value="" />
                 <div class="control_indicator"></div>
-            </label>
+            </label><br />
         </div>
 
         </div>
@@ -129,6 +128,8 @@ export default {
 
 <style scoped>
 
+
+
 #opportunityOverflow {
   background: #2d3e49;
   border-radius: 6px;
@@ -141,17 +142,18 @@ export default {
 }
 
 #menu {
-  border: 2px solid black;
   height: auto;
   margin: 10px;
+  font-size: 20px;
   padding: 20px;
   border-radius: 6px;
+  text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  background: white;  /* fallback for old browsers */
- background: -webkit-linear-gradient(to top, #eef2f3, white);  /* Chrome 10-25, Safari 5.1-6 */
- background: linear-gradient(to top, #eef2f3, white);
+  background: #FDF1D7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FDF1D7, #fce4b5);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FDF1D7,  #fce4b5);
 }
 
 #headshot {
@@ -190,7 +192,9 @@ input {
   border-radius: 10px;
   color: black;
   outline: none;
-
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
 }
 
 #filterButton {
@@ -203,7 +207,8 @@ input {
   background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
-  border: 1.5px solid rgba(0,0,0,0.38);
+  border-radius: 3px;
+
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
@@ -222,15 +227,17 @@ input {
   font-size: 20px;
   text-align: center;
   color: white;
+  margin-bottom: -10px;
 }
 
 #welcomeName {
   font-weight: bold;
-  font-size: 26px;
+  font-size: 30px;
   color: white;
-  font-style: italic;
   margin-top: 0px;
   padding-top: 30px;
+  text-shadow: .5px .5px 1px rgba(150, 150, 150, 1);
+
 }
 
 fieldset {

@@ -1,6 +1,7 @@
 <template>
   <div class="appFooter">
       <p>&copy; 2018 Connect Direct </p>
+      <p>Developed by <a href="http://trevdev.co">trevdev.co</a></p>
   </div>
 </template>
 
@@ -26,9 +27,4 @@ export default {
   margin-top: 10px;
 }
 
-a {
-  color: white;
-  font-style: italic;
-  font-style: oblique;
-}
 </style>

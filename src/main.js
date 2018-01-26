@@ -5,11 +5,8 @@ import App from './App'
 import router from './router'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
-import Vuetify from 'vuetify'
-
 
 Vue.use(VueAxios, axios)
-Vue.use(Vuetify)
 
 Vue.axios.defaults.baseURL = 'http://localhost:8000'
 

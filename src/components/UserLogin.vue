@@ -5,7 +5,7 @@
       <h1>User Login</h1>
       <input v-model="email" type="email" placeholder="Email Address" required>
       <input v-model="password" type="password" placeholder="Password" required>
-      <button type='submit'>Let's Do This</button><br />
+      <button type='submit'>Let's Do This <img height="15px"src="../assets/arrowicon.png" /></button><br />
       <span id = "error" v-if="errMsg">Invalid login credentials. Please try again.</span><br /><br />
       <label for='form-switch'><a>Not a member? Click here to register!</a></label>
     </form>
@@ -20,7 +20,7 @@
       <input type="text" placeholder="LinkedIn URL" required>
       <input type="password" placeholder="Password" required>
       <input type="password" placeholder="Re-Enter Password" required><br />
-      <button type='submit' id="button1">Get Started</button><br />
+      <button type='submit' id="button1">Get Started <img height="15px"src="../assets/arrowicon.png" /></button><br />
       <label for='form-switch'><a>Already a member? Click here to sign in!</a></label>
     </form>
   </div>
@@ -111,8 +111,7 @@ button {
   background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
-  border: 1.5px solid rgba(0,0,0,0.38);
-  /* border-radius: 2px; */
+  border-radius: 3px;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
