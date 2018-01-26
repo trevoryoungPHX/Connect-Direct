@@ -7,7 +7,7 @@
           <p id="welcomeName">Welcome,<br /> Trevor!</p>
           <img id ="headshot" src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAsOAAAAJGE0YjUxNTllLTYyYWYtNGE1OS04MWVkLTcyMWI2YjMyZjA3ZA.jpg" /><br /><br />
             <div id = "menu">
-              <a href="">Your Profile</a><br />
+              <a><router-link to="/user-profile" exact>Your Profile</router-link></a><br />
               <a href="">Log Out</a><br />
               <a href="">Refer a Professional</a><br />
               <a href="">Refer an Organization</a><br />
@@ -182,9 +182,15 @@ form {
 
 input {
   font-family: 'Questrial', sans-serif;
-  width: 100%;
+  width: 90%;
   text-align: center;
   margin-bottom: 10px;
+  background-color: white;
+  height: 20px;
+  border-radius: 10px;
+  color: black;
+  outline: none;
+
 }
 
 #filterButton {

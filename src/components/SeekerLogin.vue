@@ -65,11 +65,12 @@ export default {
 h2 {
   text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
   font-size: 40px;
-
+  padding: 20px;
 }
 h1 {
   text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
   font-size: 45px;
+  padding: 20px;
 }
 .SeekerLogin {
   background-image: url(../assets/image2.jpg);
@@ -77,12 +78,12 @@ h1 {
   background-repeat: no-repeat;
   padding-top: 50px;
   padding-bottom: 50px;
-  min-height: 630px;
+  min-height: 800px;
 }
 form {
   margin: 0 auto;
   width: 30%;
-  min-width: 250px;
+  min-width: 350px;
   padding: 40px;
   border: 2px solid black;
   border-radius: 5px;

@@ -9,10 +9,10 @@
 </template>
 
 <script>
+
 import UserLogin from './UserLogin.vue'
 import SplashNav from './SplashNav.vue'
 import SplashFooter from './SplashFooter.vue'
-
 
 export default {
   name: 'Splash',

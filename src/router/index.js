@@ -5,6 +5,7 @@ import UserPage from '@/components/UserPage'
 import SeekerSplash from '@/components/SeekerSplash'
 import AdminLogin from '@/components/AdminLogin'
 import SeekerPage from '@/components/SeekerPage'
+import UserProfile from '@/components/UserProfile'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
       path: '/admin-login',
       name: 'AdminLogin',
       component: AdminLogin
+    },
+    {
+      path: '/user-profile',
+      name: 'UserProfile',
+      component: UserProfile
     }
   ]
 })
