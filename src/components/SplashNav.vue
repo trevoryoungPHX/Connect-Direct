@@ -21,7 +21,6 @@ export default {
 .splashNav {
   color: white;
   text-align: left;
-  margin-bottom: 30px;
   height: auto ;
   width: 100%;
   background: #FDF1D7;  /* fallback for old browsers */

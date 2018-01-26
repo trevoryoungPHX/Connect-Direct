@@ -4,17 +4,15 @@
     <div class="wrapper">
       <nav class="main-nav">
         <div id ="main-navHolder">
-          <p id="welcomeName">Welcome, Trevor!</p>
+          <p id="welcomeName">Welcome,<br /> Trevor!</p>
           <img id ="headshot" src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAsOAAAAJGE0YjUxNTllLTYyYWYtNGE1OS04MWVkLTcyMWI2YjMyZjA3ZA.jpg" /><br /><br />
-          <button id="menuButton" v-on:click="menu = !menu"><img width="100%" src="../assets/menu.png" /></button><br />
-          <br />
-          <transition name="slide">
-            <div id = "menu" v-if="menu">
+            <div id = "menu">
               <a href="">Your Profile</a><br />
               <a href="">Log Out</a><br />
               <a href="">Refer a Professional</a><br />
+              <a href="">Refer an Organization</a><br />
+
             </div>
-          </transition>
           <br />
           <fieldset>
               <legend id="filterTypeTitle">Search</legend>
@@ -30,7 +28,6 @@
               <button id="filterButton">Locate</button>
           </fieldset>
           <br />
-          <hr />
           <br />
           <h3 id="filterTypeTitle2">Filter By Type</h3>
           <div class="control-group">
@@ -102,8 +99,8 @@
           <Opportunity></Opportunity>
           </div>
       </article>
-      <footer class="main-footer">FOOTER</footer>
     </div>
+    <AppFooter></AppFooter>
   </div>
 </template>
 
@@ -111,10 +108,11 @@
 
 import UserNav from './UserNav.vue'
 import Opportunity from './Opportunity.vue'
+import AppFooter from './AppFooter.vue'
 
 export default {
   name: 'User',
-  components: { UserNav, Opportunity },
+  components: { UserNav, Opportunity, AppFooter },
   data() {
     return {
       msg: 'Test message',
@@ -132,11 +130,10 @@ export default {
 <style scoped>
 
 #opportunityOverflow {
-  background: #2d3e49;  /* fallback for old browsers */
+  background: #2d3e49;
   border-radius: 6px;
   padding-top: 20px;
   max-height: 1200px;
-  padding-bottom: 20px;
   overflow-y: scroll;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
@@ -148,7 +145,7 @@ export default {
   height: auto;
   margin: 10px;
   padding: 20px;
-  border-radius: 3px;
+  border-radius: 6px;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
@@ -166,74 +163,6 @@ export default {
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   border: 2px solid black;
-}
-
-#menuButton {
-  border-radius: 300px;
-  height: 50px;
-  width: 50px;
-  padding-top: 6px;
-  outline:0;
-  background: #1D976C;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  color: white;
-  border-radius: 50px;
-  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  cursor: pointer;
-  -webkit-animation: pulsate 3s ease-out;
-  -webkit-animation-iteration-count: infinite;
-}
-
-@-webkit-keyframes pulsate {
-  0% {
-      opacity: 0.65;
-  }
-  50% {
-      opacity: 1.0;
-  }
-  100% {
-      opacity: 0.65;
-  }
-}
-
-.slide-enter {
-  opacity: 0;
-}
-
-.slide-enter-active {
-  animation: slide-in 1s ease-out forwards;
-  transition: opacity 0.5s;
-}
-
-.slide-leave {
-
-}
-
-.slide-leave-active {
-  animation: slide-out 1s ease-out forwards;
-  transition: opacity 1s;
-  opacity: 0;
-}
-
-@keyframes slide-in {
-  from {
-    transform: translateY(30px)
-  }
-  to {
-    transform: translateY(0)
-  }
-}
-
-@keyframes slide-out {
-  from {
-    transform: translateY(0)
-  }
-  to {
-      transform: translateY(30px)
-  }
 }
 
 
@@ -295,7 +224,7 @@ input {
   color: white;
   font-style: italic;
   margin-top: 0px;
-  padding-top: 10px;
+  padding-top: 30px;
 }
 
 fieldset {
@@ -318,7 +247,6 @@ fieldset {
     }
 
     .wrapper > * {
-        background-color: white;
         padding: 10px;
     }
 
@@ -329,7 +257,6 @@ fieldset {
 .content {
   grid-area: content;
   min-width: 300px;
-  background: white;
 }
 .main-nav {
   grid-area: nav;
@@ -388,6 +315,9 @@ fieldset {
 
 .User {
   border-top-left-radius: 30px;
+  background: #ece9e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ece9e6, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ece9e6, #ffffff);
   min-height: 800px;
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
    -moz-animation: fadein 2s; /* Firefox < 16 */

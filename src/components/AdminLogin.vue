@@ -1,5 +1,5 @@
 <template>
-  <div class="SeekerLogin">
+  <div class="adminLogin">
     <AdminNav></AdminNav>
     <div class = "circleBorder">
       <div id = 'adminFormHolder'>
@@ -10,7 +10,6 @@
           <button type='submit'>Access Admin Panel</button>
           <span id = "error" v-if="errMsg">Invalid login credentials.<br />Please try again.</span><br />
           <img width="70%" src="../assets/test direct connect logo.png" /><br /><br />
-
         </form>
       </div>
     </div>
@@ -59,7 +58,7 @@ export default {
 
 <style scoped>
 
-.SeekerLogin {
+.adminLogin {
   background-image: url(../assets/image3.jpg);
   background-size: cover;
   background-repeat: no-repeat;

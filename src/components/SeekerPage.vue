@@ -1,12 +1,13 @@
 <template>
-  <div class="Seeker">
+  <div class="seekerPage">
     Seeker has successfully logged in!
+    <button>TEST</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Seeker',
+  name: 'SeekerPage',
   data() {
     return {
       msg: 'Test message'
@@ -21,4 +22,8 @@ export default {
 </script>
 
 <style scoped>
+
+.seekerPage {
+  color: black;
+}
 </style>

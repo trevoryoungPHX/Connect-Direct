@@ -4,6 +4,7 @@ import Splash from '@/components/Splash'
 import UserPage from '@/components/UserPage'
 import SeekerSplash from '@/components/SeekerSplash'
 import AdminLogin from '@/components/AdminLogin'
+import SeekerPage from '@/components/SeekerPage'
 
 Vue.use(Router)
 

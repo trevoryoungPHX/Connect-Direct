@@ -7,7 +7,7 @@
       <input v-model="password" type="password" placeholder="Password" required>
       <button type='submit'>Let's Do This</button><br />
       <span id = "error" v-if="errMsg">Invalid login credentials. Please try again.</span><br /><br />
-      <label for='form-switch'>Not a member? Click here to register!</label>
+      <label for='form-switch'><a>Not a member? Click here to register!</a></label>
     </form>
     <form id='register-form' action="" method='post'>
       <h1>Register New User</h1>
@@ -21,7 +21,7 @@
       <input type="password" placeholder="Password" required>
       <input type="password" placeholder="Re-Enter Password" required><br />
       <button type='submit' id="button1">Get Started</button><br />
-      <label for='form-switch'>Already a member? Click here to sign in!</label>
+      <label for='form-switch'><a>Already a member? Click here to sign in!</a></label>
     </form>
   </div>
 

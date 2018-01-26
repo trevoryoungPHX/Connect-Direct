@@ -14,7 +14,7 @@
         <p>Address Line 1</p>
         <p>City, State, Zip</p>
       </div>
-    <button v-on:click="requestInfo = !requestInfo" >Connect</button>
+    <button id="sendMessage" v-on:click="requestInfo = !requestInfo" >Connect</button>
     <transition name="slide">
       <div id = "requestInfo" v-if="requestInfo">
         <form>
@@ -59,9 +59,7 @@ export default {
 }
 
 #whiteBackground {
-  background: #FDF1D7;  /* fallback for old browsers */
-  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  background: white;
   margin: 0px;
   padding: 20px;
   border-radius: 5px;
@@ -73,11 +71,11 @@ textarea {
   font-size: 20px;
   border-radius: 5px;
   background: white;  /* fallback for old browsers */
- background: -webkit-linear-gradient(to top, #eef2f3, white);  /* Chrome 10-25, Safari 5.1-6 */
- background: linear-gradient(to top, #eef2f3, white);
- -webkit-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
- -moz-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
- box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  background: -webkit-linear-gradient(to top, #eef2f3, white);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #eef2f3, white);
+  -webkit-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
 }
 
 #section1 {
@@ -89,9 +87,9 @@ textarea {
     -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
     -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
     box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-    background: white;  /* fallback for old browsers */
-   background: -webkit-linear-gradient(to top, #eef2f3, white);  /* Chrome 10-25, Safari 5.1-6 */
-   background: linear-gradient(to top, #eef2f3, white);
+    background: #FDF1D7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FDF1D7, #fce4b5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FDF1D7,  #fce4b5);
 }
 
 #section2 {
@@ -106,9 +104,9 @@ textarea {
     -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
     -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
     box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-    background: white;  /* fallback for old browsers */
-   background: -webkit-linear-gradient(to top, #eef2f3, white);  /* Chrome 10-25, Safari 5.1-6 */
-   background: linear-gradient(to top, #eef2f3, white);
+    background: #FDF1D7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FDF1D7, #fce4b5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FDF1D7,  #fce4b5);
 }
 
 #opportunityHolder {

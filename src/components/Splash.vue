@@ -26,7 +26,7 @@ export default {
 
 <style scoped>
 .splash {
-  background-color: #2d3e49;
+
   height: 100%;
 }
 

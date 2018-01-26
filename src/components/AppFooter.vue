@@ -1,9 +1,7 @@
 <template>
-  <div class = "wrapper">
-  <footer class="appFooter">
+  <div class="appFooter">
       <p>&copy; 2018 Connect Direct </p>
-  </footer>
-</div>
+  </div>
 </template>
 
 <script>
@@ -18,11 +16,14 @@ export default {
 
 <style scoped>
 .appFooter {
-  background-color: #2d3e49;
+  background: #2d3e49;
+  background: -webkit-linear-gradient(to left, #2d3e49, #516f82);
+  background: linear-gradient(to left, #2d3e49, #516f82);
   color: white;
   height: 100px;
   width: 100%;
-  padding-top: 30px;
+  padding-top: 10px;
+  margin-top: 10px;
 }
 
 a {

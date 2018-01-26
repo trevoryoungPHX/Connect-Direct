@@ -7,7 +7,7 @@
       <input v-model="password" type="password" placeholder="Password" required>
       <button type='submit'>Find Professionals</button><br />
       <span id = "error" v-if="errMsg">Invalid login credentials. Please try again.</span><br /><br />
-      <label for='form-switch'>No organization profile? Click here to register!</label>
+      <label for='form-switch'><a>No organization profile? Click here to register!</a></label>
     </form>
     <form id='register-form' action="" method='post'>
       <h2>Register Your Organization</h2>
@@ -20,7 +20,7 @@
       <input type="password" placeholder="Password" required>
       <input type="password" placeholder="Re-Enter Password" required><br />
       <button type='submit' id="button1">Get Started</button><br />
-      <label for='form-switch'>Already registered? Click here to sign in!</label>
+      <label for='form-switch'><a>Already registered? Click here to sign in!</a></label>
     </form>
   </div>
 

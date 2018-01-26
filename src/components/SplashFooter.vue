@@ -19,7 +19,9 @@ export default {
 
 <style scoped>
 .splashFooter {
-  background-color: #2d3e49;
+  background: #2d3e49;
+  background: -webkit-linear-gradient(to left, #2d3e49, #516f82);
+  background: linear-gradient(to left, #2d3e49, #516f82);
   color: white;
   height: 100px;
   width: 100%;
