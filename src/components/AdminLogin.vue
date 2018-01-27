@@ -8,12 +8,10 @@
           <input v-model="email" type="email" placeholder="Email Address" required>
           <input v-model="password" type="password" placeholder="Password" required>
           <button type='submit'>Access Admin Panel</button>
-          <span id = "error" v-if="errMsg">Invalid login credentials.<br />Please try again.</span><br />
+          <span id = "error" v-if="errMsg">Invalid login credentials. Please try again.</span><br /><br />
           <img width="70%" src="../assets/test direct connect logo.png" /><br /><br />
         </form>
       </div>
-    </div>
-    <SplashFooter></SplashFooter>
     </div>
   </div>
 </template>
@@ -22,34 +20,23 @@
 
 import AdminNav from './AdminNav.vue'
 import SplashFooter from './SplashFooter.vue'
-
+import axios from 'axios'
 export default {
   name: 'AdminLogin',
   components: { AdminNav, SplashFooter },
   data() {
     return {
-        email: "",
-        password: "",
-        errMsg: ''}
+      email: '',
+      password: '',
+      errMsg: false
+    }
   },
   methods: {
     adminLogin() {
-      let redirect = this.$auth.redirect()
-      this.$auth.login({
-        data: {
-          email: this.email,
-          password: this.password
-        },
-        success(data) {
-          console.log('data', data)
-          this.$auth.token(null, data.data.token)
-          this.$auth.user(data.data.user[0])
-          console.log('user', this.$auth.user())
-        },
-        error(err) {
-          this.errMsg = true
-        },
-        redirect: { name: redirect ? redirect.from.name : 'AdminPage' }
+      axios.post('/admin/login', {email:this.email, password:this.password}).then((res)=>{
+        console.log(res.data.user);
+        localStorage.setItem('usertoken', res.data.token);
+        this.$router.push('/admin-page');
       })
     }
   }
@@ -61,6 +48,7 @@ export default {
 .adminLogin {
   background-image: url(../assets/image3.jpg);
   background-size: cover;
+  min-height: 1200px;
   background-repeat: no-repeat;
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
    -moz-animation: fadein 2s; /* Firefox < 16 */
@@ -99,9 +87,8 @@ export default {
           to   { opacity: 1; }
       }
 .circleBorder {
-  border: 10px solid #2d3e49;
   margin-bottom: 50px;
-  border-radius: 700px;
+  border-radius: 100px;
   margin-left: auto;
   width: 50%;
   min-width: 380px;
@@ -121,6 +108,8 @@ input {
   border: 1px solid gray;
   font-family: 'Questrial', sans-serif;
   font-size: 15px;
+  border-radius: 3px;
+
 }
 
 button {
@@ -134,8 +123,7 @@ button {
   background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
-  border: 1.5px solid rgba(0,0,0,0.38);
-  /* border-radius: 2px; */
+  border-radius: 3px;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
@@ -161,23 +149,11 @@ input {
 label {
   cursor: pointer;
 }
-#form-switch {
-  display: none;
-}
-#register-form {
-  display: none;
-}
-#form-switch:checked ~ #register-form {
-  display: block;
-}
-#form-switch:checked ~ #login-form {
-  display: none;
-}
 
 h1 {
-  padding-top: 10px;
+  padding:20px;
   text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
-  font-size: 40px;
+  font-size: 35px;
 }
 
 </style>

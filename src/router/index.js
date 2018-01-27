@@ -6,6 +6,9 @@ import SeekerSplash from '@/components/SeekerSplash'
 import AdminLogin from '@/components/AdminLogin'
 import SeekerPage from '@/components/SeekerPage'
 import UserProfile from '@/components/UserProfile'
+import AdminPage from '@/components/AdminPage'
+import SeekerProfile from '@/components/SeekerProfile'
+
 
 Vue.use(Router)
 
@@ -36,6 +39,21 @@ export default new Router({
       path: '/user-profile',
       name: 'UserProfile',
       component: UserProfile
+    },
+    {
+      path: '/seeker-page',
+      name: 'SeekerPage',
+      component: SeekerPage
+    },
+    {
+      path: '/admin-page',
+      name: 'AdminPage',
+      component: AdminPage
+    },
+    {
+      path: '/seeker-profile',
+      name: 'SeekerProfile',
+      component: SeekerProfile
     }
   ]
 })

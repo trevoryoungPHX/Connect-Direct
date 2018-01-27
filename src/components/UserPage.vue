@@ -5,11 +5,10 @@
       <nav class="main-nav">
         <div id ="main-navHolder">
           <p id="welcomeName">Welcome,<br /> Trevor!</p>
-          <img id ="headshot" src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAsOAAAAJGE0YjUxNTllLTYyYWYtNGE1OS04MWVkLTcyMWI2YjMyZjA3ZA.jpg" /><br /><br />
             <div id = "menu">
-              <a><router-link to="/user-profile" exact>Your Profile</router-link></a><br /><br />
-              <a href="">Log Out</a><br /><br />
-              <a href="">Invite</a><br />
+              <a><router-link id="menuLink" to="/user-profile" exact>Your Profile</router-link></a><br /><br />
+              <a id="menuLink" @click="logout">Log Out</a><br /><br />
+              <a id="menuLink" href="">Invite</a><br />
             </div>
           <br />
           <fieldset>
@@ -108,7 +107,7 @@
 import UserNav from './UserNav.vue'
 import Opportunity from './Opportunity.vue'
 import AppFooter from './AppFooter.vue'
-
+import axios from 'axios';
 export default {
   name: 'User',
   components: { UserNav, Opportunity, AppFooter },
@@ -118,8 +117,9 @@ export default {
       menu: true,
     }
   },
-  created() {
-    if (!this.$auth.check()) {
+  methods:{
+    logout: function(){
+      localStorage.removeItem('usertoken');
       this.$router.push('/')
     }
   }
@@ -128,7 +128,16 @@ export default {
 
 <style scoped>
 
+#menuLink {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
+#menuLink:hover {
+  color: #1D976C;
+}
 
 #opportunityOverflow {
   background: #2d3e49;
@@ -139,6 +148,7 @@ export default {
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+
 }
 
 #menu {
@@ -147,14 +157,11 @@ export default {
   font-size: 20px;
   padding: 20px;
   border-radius: 6px;
-  text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
-  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  background: #FDF1D7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FDF1D7, #fce4b5);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FDF1D7,  #fce4b5);
+  color: white;
+  font-size: 20px;
 }
+
+
 
 #headshot {
   border-radius: 300px;
@@ -189,7 +196,7 @@ input {
   margin-bottom: 10px;
   background-color: white;
   height: 20px;
-  border-radius: 10px;
+  border-radius: 3px;
   color: black;
   outline: none;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);

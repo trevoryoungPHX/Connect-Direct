@@ -9,17 +9,16 @@
       <span id = "error" v-if="errMsg">Invalid login credentials. Please try again.</span><br /><br />
       <label for='form-switch'><a>Not a member? Click here to register!</a></label>
     </form>
-    <form id='register-form' action="" method='post'>
+    <form id='register-form' @submit.prevent="userSignup">
       <h1>Register New User</h1>
-      <input type="text" placeholder="First Name" required>
-      <input type="text" placeholder="Last Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="text" placeholder="Phone Number" required>
-      <input type="text" placeholder="Job Title" required>
-      <input type="text" placeholder="Company Name" required>
-      <input type="text" placeholder="LinkedIn URL" required>
-      <input type="password" placeholder="Password" required>
-      <input type="password" placeholder="Re-Enter Password" required><br />
+      <input type="text" v-model="first_name" placeholder="First Name" required>
+      <input type="text" v-model="last_name" placeholder="Last Name" required>
+      <input type="email" v-model="email" placeholder="Email Address" required>
+      <input type="text" v-model="phone_number" placeholder="Phone Number" required>
+      <input type="text" v-model="job_title" placeholder="Job Title" required>
+      <input type="text" v-model="company_name" placeholder="Company Name" required>
+      <input type="text" v-model="linkedin_url" placeholder="LinkedIn URL">
+      <input type="password" v-model="password" placeholder="Password" required><br />
       <button type='submit' id="button1">Get Started <img height="15px"src="../assets/arrowicon.png" /></button><br />
       <label for='form-switch'><a>Already a member? Click here to sign in!</a></label>
     </form>
@@ -28,33 +27,33 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Login',
   data() {
     return {
       email: '',
       password: '',
-      errMsg: false
+      errMsg: false,
+      first_name: '',
+      last_name: "",
+      phone_number: "",
+      job_title: "",
+      company_name: "",
+      linkedin_url: ""
     }
   },
   methods: {
     userLogin() {
-      let redirect = this.$auth.redirect()
-      this.$auth.login({
-        data: {
-          email: this.email,
-          password: this.password
-        },
-        success(data) {
-          console.log('data', data)
-          this.$auth.token(null, data.data.token)
-          this.$auth.user(data.data.user[0])
-          console.log('user', this.$auth.user())
-        },
-        error(err) {
-          this.errMsg = true
-        },
-        redirect: { name: redirect ? redirect.from.name : 'UserPage' }
+      axios.post('/user/login', {email:this.email, password:this.password}).then((res)=>{
+        console.log(res.data.user);
+        localStorage.setItem('usertoken', res.data.token);
+        this.$router.push('/user-page');
+      })
+    },
+    userSignup() {
+      axios.post('/user/signup', {email:this.email, password:this.password, first_name:this.first_name, last_name:this.last_name, phone_number:this.phone_number, job_title:this.job_title, company_name:this.company_name, linkedin_url:this.linkedin_url}).then((res)=>{
+        window.location.href = "/";
       })
     }
   }
@@ -66,7 +65,7 @@ export default {
 
 h1 {
   text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
-  font-size: 45px;
+  font-size: 35px;
   padding: 20px;
 }
 
@@ -83,9 +82,10 @@ form {
   width: 30%;
   min-width: 350px;
   padding: 40px;
-  border: 2px solid black;
   border-radius: 5px;
-  background-color: white;
+  background: #ece9e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ece9e6, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ece9e6, #ffffff);
   -webkit-box-shadow: 1px 1px 20px 4px rgba(0,0,0,0.58);
   -moz-box-shadow: 1px 1px 20px 4px rgba(0,0,0,0.58);
   box-shadow: 1px 1px 20px 4px rgba(0,0,0,0.58);
@@ -98,6 +98,7 @@ input {
   border: 1px solid gray;
   font-family: 'Questrial', sans-serif;
   font-size: 15px;
+  border-radius: 3px;
 }
 
 button {
