@@ -94,11 +94,11 @@
             <form>
               <form>
                   <h3>Choose a Date Option</h3><br />
-                  <input type="radio" name="Date" value="ongoing" id="radioButton" checked> <label for="ongoing">Ongoing/Flexible</label><br /><br />
-                  <input type="radio" name="Date" value="singleDate" id="radioButton"><label for="singleDate">Date and Time</label><br /><br />
-                  <input type="radio" name="Date" value="dateRange" id="radioButton"><label for="singleDate">Date Range</label><br /><br />
+                  <input type="radio" name="Date" id="radioButton" checked> <label for="ongoing">Ongoing/Flexible</label><br /><br />
+                  <input type="radio" v-model="x" name="Date" id="radioButton"> <label for="singleDate">Date and Time</label><br /><br />
+                  <input type="radio" v-model="x" name="Date" id="radioButton"> <label for="singleDate">Date Range</label><br /><br />
               </form>
-              <div id="singleDate">
+              <div id="singleDate" v-show="x === 'singleDate'">
                 <label for="start_date">Date:</label><br />
                 <input id="input2" name="start_date" type="date"><br />
                 <label for="start_time">Start Time:</label><br />
@@ -106,7 +106,7 @@
                 <label for="start_time">End Time:</label><br />
                 <input id="input2" name="end_time" type="time"><br />
               </div>
-              <div id="dateRange">
+              <div id="dateRange" v-show="x === 'dateRange'">
                 <label for="start_date">Start Date:</label><br />
                 <input id="input2" name="start_date" type="date"><br />
                 <label for="end_date">End Date:</label><br />

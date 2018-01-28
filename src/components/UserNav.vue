@@ -1,7 +1,7 @@
 <template>
   <div class="userNav">
     <div id="container">
-    <img height="100px" src="../assets/test direct connect logo.png" />
+    <router-link to="/login" exact><img height="100px" src="../assets/test direct connect logo.png" /></router-link>
   </div>
   </div>
 </template>

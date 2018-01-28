@@ -1,8 +1,8 @@
 <template>
   <div class="seekerLoginNav">
     <div id="container">
-    <img height="100px" src="../assets/test direct connect logo.png" />
-    <router-link to="/" exact>User Login</router-link>
+      <router-link to="/" exact><img height="100px" src="../assets/test direct connect logo.png" /></router-link>
+    <router-link to="/login" exact>User Login</router-link>
   </div>
   </div>
 </template>

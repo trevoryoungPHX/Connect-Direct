@@ -17,6 +17,7 @@
     "vue": "^2.5.2",
     "vue-axios": "^2.0.2",
     "vue-carousel": "^0.6.5",
+    "vue-easy-slider": "^3.2.0",
     "vue-router": "^3.0.1",
     "vuetify": "^0.17.6"
   },

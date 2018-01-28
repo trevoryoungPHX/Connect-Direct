@@ -3,7 +3,7 @@
   <footer class="splashFooter">
       <p>&copy; 2018 Connect Direct </p>
       <p><router-link to="admin-login">Admin Portal</router-link></p>
-      <p>Developed by <a href="http://trevdev.co">trevdev.co</a></p>
+      <p>Developed by <a target="_blank" href="http://trevdev.co">trevdev.co</a></p>
   </footer>
 </div>
 </template>

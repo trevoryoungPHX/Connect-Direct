@@ -1,7 +1,7 @@
 <template>
   <div class="splashNav">
     <div id="container">
-    <img height="100px" src="../assets/test direct connect logo.png" />
+    <router-link to="/" exact><img height="100px" src="../assets/test direct connect logo.png" /></router-link>
     <router-link to="/seeker-splash" exact>Find Professionals</router-link>
   </div>
   </div>

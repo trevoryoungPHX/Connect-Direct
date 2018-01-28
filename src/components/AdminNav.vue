@@ -1,8 +1,8 @@
 <template>
     <div class="adminNav">
     <div id="container">
-    <img height="100px" src="../assets/test direct connect logo.png" />
-    <router-link to="/">Home</router-link>
+    <router-link to="/" exact><img height="100px" src="../assets/test direct connect logo.png" /></router-link>
+    <router-link to="/login">User Login</router-link>
   </div>
 </div>
 </template>

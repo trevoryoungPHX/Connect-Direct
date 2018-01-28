@@ -1,7 +1,7 @@
 <template>
   <div class="appFooter">
       <p>&copy; 2018 Connect Direct </p>
-      <p>Developed by <a href="http://trevdev.co">trevdev.co</a></p>
+      <p>Developed by <a target="_blank" href="http://trevdev.co">trevdev.co</a></p>
   </div>
 </template>
 
