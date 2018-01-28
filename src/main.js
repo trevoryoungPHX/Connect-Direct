@@ -5,8 +5,12 @@ import App from './App'
 import router from './router'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
+import {Tabs, Tab} from 'vue-tabs-component';
+
+
 
 Vue.use(VueAxios, axios)
+Vue.use(Tabs);
 
 Vue.axios.defaults.baseURL = 'http://localhost:8000'
 

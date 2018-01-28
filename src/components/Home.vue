@@ -1,40 +1,37 @@
 <template>
-  <DIV>
+  <div id="background">
     <div class="home">
       <div class="splash-container">
         <div class="splash">
           <img height="150px" src="../assets/test direct connect logo.png" /><br />
-          <router-link to="/login" exact>  <button id="learnMore3">Login<img height="20px" src="../assets/arrowicon.png" /></button></router-link>
+          <router-link to="/login" exact>  <button id="learnMore3">Get Started</button></router-link>
           <div id="learnMore">Learn More<img id="arrow" src="../assets/down.png" /></div>
         </div>
     </div>
     <div id = "siteDescriptionHolder">
       <div id = "siteDescription">
-        <img height="150px" src="../assets/test direct connect logo.png" /><br /><br />
-        <p id="appName"> A place for professionals to connect with organizations, educators & associations looking for professional development opportunities.</p> <br /><br /><p id="descriptionText"> Whether you are an elementary school teacher looking to expose your children to a new career path, an event planner looking for a conference speaker or workshop presenter, or a business organization looking for someone to provide company tours or serve on a panel - Connect Direct is the best place to connect directly with professionals eager and willing to give their time and share their expertise. <br /><br /><span id="appName">Start finding new connnctions today!</span></p>
+        <img height="100px" src="../assets/test direct connect logo.png" /><br /><br />
+        <p id="appName"> A place for professionals to connect with organizations, educators & associations<br /> looking for professional development opportunities.</p> <br /><br /><p id="descriptionText"> Whether you are a school teacher looking to expose your students to a new career path, an event planner looking for a conference speaker or workshop presenter, or a business organization looking for someone to provide company tours or serve on a business panel - Connect Direct is the best place to connect directly with professionals eager and willing to give their time and share their expertise. <br /><br /><span id="appName">Start finding new connnctions today!</span></p>
       </div>
     </div>
     <div class="content-wrapper">
         <div class="content">
           <ul class="flex-container">
-            <li class="flex-item"><img id="professional" src="../assets/profesional.jpg" /></li>
-            <li class="flex-item">
-                <ul>
-                  <li>Classroom Speakers</li>
-                  <li>Company Tours</li>
-                  <li>Competition Judges</li>
-                  <li>Conference Speakers</li>
-                  <li>Job Shadowing</li>
-                  <li>Materials & Equiptment</li>
-                  <li>Mentorship Opportunities</li>
-                  <li>Mock Interviews</li>
-                  <li>Panelists</li>
-                  <li>Project Reviews</li>
-                  <li>Workshop Presenters</li>
-                </ul>
+            <li class="flex-item2"><img id ="professional" width="100%" src="../assets/professional.jpg" /></li>
+            <li class="flex-item2"><br /><br />
+                <p>Classroom Speakers</p>
+                <p>Company Tours</p>
+                <p>Competition Judges</p>
+                <p>Conference Speakers</p>
+                <p>Job Shadowing</p>
+                <p>Materials & Equiptment</p>
+                <p>Mentorship Opportunities</p>
+                <p>Mock Interviews</p>
+                <p>Panelists</p>
+                <p>Project Reviews</p>
+                <p>Workshop Presenters</p>
             </li>
-            <BR />
-            <li class="flex-item"><img id="professional" src="../assets/organization2.jpg" /></li>
+            <li class="flex-item2"><img id ="professional" width="100%" src="../assets/organization2.jpg" /></li>
           </ul>
           <ul class="flex-container">
             <li class="flex-item2"><router-link to="/login"> <button id="learnMore2">User Log-In</button></router-link></li>
@@ -63,6 +60,45 @@ export default {
 </script>
 
 <style scoped>
+
+.home {
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+     -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+
+      }
+
+      @keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Firefox < 16 */
+      @-moz-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Safari, Chrome and Opera > 12.1 */
+      @-webkit-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Internet Explorer */
+      @-ms-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Opera < 12.1 */
+      @-o-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+
+}
 #appName {
   font-weight: bolder;
   font-style: italic;
@@ -72,7 +108,7 @@ export default {
   font-size: 20px;
 }
 #siteDescriptionHolder {
-  width: 90%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
   background: #2d3e49;
@@ -84,10 +120,19 @@ export default {
   padding:20px;
   border-radius: 6px;
   margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#professional {
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  border-radius: 6px;
 }
 
 #siteDescription {
   width: 100%;
+  border-radius: 6px;
   margin-left: auto;
   margin-right: auto;
   background: #FDF1D7;  /* fallback for old browsers */
@@ -99,56 +144,33 @@ export default {
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
 }
 
-#professional {
-  height: 100%;
-  border-radius: 6px;
-  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
-  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
-  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
-}
 
 .flex-container {
-  padding: 40px;
+  padding: 0;
   margin: 0;
-  width: 90%;
+  list-style: none;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
-  list-style: none;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+
   -webkit-flex-flow: row wrap;
   justify-content: space-around;
 }
 
-.flex-item {
-  padding: 10px;
-  width: 380px;
-  height: 450px;
-  margin-top: 10px;
-  list-style: none;
-  text-align: center;
-}
-
-.flex-item > ul {
-  list-style-type: none;
+.flex-item2> p{
   font-size: 20px;
-  font-weight: bold;
-}
-
-.flex-item > ul > li {
-  padding: 10px;
 }
 .flex-item2 {
   padding: 10px;
   width: 380px;
   height: auto;
-  margin-top: 5px;
-  color: white;
+  color: black;;
   font-weight: bold;
-  font-size: 3em;
   text-align: center;
 }
 
@@ -170,13 +192,13 @@ export default {
 }
 
 #learnMore {
-  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
+  padding-bottom: 30px;
   width: 50%;
   font-family: 'Questrial', sans-serif;
-  font-size: 35px;
+  font-size: 25px;
   background: #2d3e49;
   background: -webkit-linear-gradient(to left, #2d3e49, #516f82);
   background: linear-gradient(to left, #2d3e49, #516f82);
@@ -185,14 +207,12 @@ export default {
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
-  -webkit-animation: pulsate 3s ease-out;
--webkit-animation-iteration-count: infinite;
 }
 
 #learnMore2 {
   margin-left: auto;
   margin-right: auto;
-  width: 200px;
+  width: 100%;
   height: 150px;
   font-size: 20px;
   font-family: 'Questrial', sans-serif;
@@ -200,6 +220,7 @@ export default {
   background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
+
   border-radius: 3px;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
@@ -211,11 +232,12 @@ export default {
 #learnMore3 {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 180px;
+  margin-top: 205px;
   padding: 20px;
+  margin-bottom: 20px;
   width: 250px;
   font-family: 'Questrial', sans-serif;
-  font-size: 35px;
+  font-size: 25px;
   background: #1D976C;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -251,6 +273,16 @@ export default {
 
 .content {
   height: AUTO;
+  background: #8e9eab;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#background {
+  background: #8e9eab;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 #footer {
@@ -261,7 +293,7 @@ export default {
   height: 100px;
   width: 100%;
   padding-top: 10px;
-  margin-top: 10px;
+  margin-top: 30px;
   z-index: 200;
 }
 

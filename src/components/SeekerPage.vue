@@ -5,12 +5,15 @@
       <nav class="main-nav">
         <div id ="main-navHolder">
           <p id="welcomeName">Welcome, Trevor!</p>
+          <div id="greenLine"></div>
             <div id = "menu">
-              <a><router-link id="menuLink" to="/seeker-profile" exact>Your Profile</router-link></a><br /><br />
-              <a id="menuLink" @click="logout">Log Out</a><br /><br />
-              <a id="menuLink" href="">Invite</a><br />
+              <a><router-link id="menuLink" to="/seeker-profile" exact>Your Profile<br />
+              <img height="40px"src="../assets/profile.png" /></router-link></a><br /><br />
+              <a id="menuLink" @click="logout">Log Out<br />
+              <img height="40px"src="../assets/left.png" /></a><br /><br />
+              <a id="menuLink" href="">Invite<br />
+              <img height="30px"src="../assets/mailwhite.png" /></a>
             </div>
-          <br />
           <fieldset>
               <legend id="filterTypeTitle">Search Your Posts <img height="15px"src="../assets/searchwhite.png" /></legend>
               <input type="search" placeholder="'Health Care' or 'Engineering'" id="input" name=""><br />
@@ -89,8 +92,8 @@
       </nav>
       <article class="content">
         <div id="newPost">
+          <img id="cactus" src="../assets/cactus.png" />
           <div id="formHolder">
-            <h4 id="newPostHeader">New Post</h4>
             <form>
               <form>
                   <h3>Choose a Date Option</h3><br />
@@ -144,7 +147,7 @@
             </form>
           </div>
         </div>
-        <img width="100%" id="imageHeader" src="../assets/arrows2.png" />
+        <img width="96.5%" id="imageHeader" src="../assets/posts.png" />
           <div id="opportunityOverflow">
           <Post></Post>
           <Post></Post>
@@ -181,6 +184,30 @@ export default {
 </script>
 
 <style scoped>
+
+#greenLine {
+  width: 90%;
+  height: 7px;
+  background: #1D976C;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+}
+
+#cactus {
+  width: 100%;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
 #radioButton {
   border: 0;
 }
@@ -285,6 +312,7 @@ textarea {
   -webkit-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
   -moz-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
   box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  width: 100%
 }
 
 
@@ -452,7 +480,7 @@ fieldset {
 }
 @media (min-width: 500px) {
   .wrapper {
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 1fr 4fr;
     grid-template-areas:
       "nav     content"
       "nav     content"
@@ -464,7 +492,7 @@ fieldset {
 }
 @media (min-width: 700px) {
   .wrapper {
-    grid-template-columns: 2fr 3fr 1fr;
+    grid-template-columns: 1fr 4fr 1fr;
     grid-template-areas:
       "nav    content content"
       "nav    content content"

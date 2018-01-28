@@ -12,14 +12,15 @@
       <div id="section2">
         <p id="postLocation">Location: Test Location Name <br /> Address Line 1 <br /> City, State, Zip</p>
       </div>
-    <button id="sendMessage" v-on:click="requestInfo = !requestInfo" >Connect <img height="12px"src="../assets/arrowicon.png" /></button>
+    <button id="sendMessage" v-on:click="requestInfo = !requestInfo" >View Inquiries <img height="12px"src="../assets/arrowicon.png" /></button>
     <transition name="slide">
       <div id = "requestInfo" v-if="requestInfo">
-        <form>
-          <textarea width="100%"></textarea><br />
-          <button id="sendMessage" type="submit">Send Message <img height="10px"src="../assets/mailwhite.png" /></button><br />
-          <br /><p><b>Once sent, your contact information will be shared with the opportunity organizer.<br />Connect Direct will only share your contact information with those you have reached out to.</b> </p>
-        </form>
+        <p id="inquiryHeader">From: Test Inquiry Name LastName - Job Title at Company Name</p>
+        <p id="smallText">Date: Insert Date and Timestamp  </p>
+        <p id="inquiryDescription">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p id="inquiryDescription2">View Profile on <img id="linkedIn" src="../assets/linked.png" /></p>
+        <p id="inquiryDescription2">Send Mail<img id="mail" src="../assets/mailwhite.png" /></p>
+        <p id="inquiryDescription2">Phone: 000-000-0000</p>
       </div>
     </transition>
   </div>
@@ -41,6 +42,50 @@ export default {
 </script>
 
 <style scoped>
+
+#linkedIn {
+  height: 20px;
+  margin-bottom: -2.5px;
+  padding-left: 3px;
+}
+
+#mail {
+  height: 20px;
+  margin-bottom: -1.0px;
+  padding-left: 6px;
+}
+#inquiryHeader{
+  font-style: italic;
+  text-decoration: underline;
+  margin-bottom: 7px;
+  font-size: 20px;
+}
+
+#smallText {
+  font-size: 13px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+#inquiryDescription{
+  padding: 0;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: black;
+  background: #ece9e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ece9e6, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ece9e6, #ffffff);
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  background: white;
+}
+
+#inquiryDescription2{
+  padding-right: 10;
+  font-size: 18px;
+}
 
 #greenLine {
   width: 90%;
@@ -91,7 +136,8 @@ export default {
 
 #requestInfo {
   margin-top: 20px;
-  padding: 20px;
+  padding: 10px;
+  text-align: left;
   color: white;
   background: #2d3e49;
   background: -webkit-linear-gradient(to left, #2d3e49, #516f82);
