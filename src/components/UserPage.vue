@@ -4,7 +4,7 @@
     <div class="wrapper">
       <nav class="main-nav">
         <div id ="main-navHolder">
-          <p id="welcomeName">Welcome,<br /> Trevor!</p>
+          <p id="welcomeName">Welcome,<br /> {{userName.first_name}}!</p>
           <div id="greenLine"></div>
             <div id = "menu">
               <a><router-link id="menuLink" to="/user-profile" exact>Your Profile<br  />
@@ -92,19 +92,27 @@
       <article class="content">
         <img width="100%" id="imageHeader" src="../assets/opportunities.png" />
           <div id="opportunityOverflow">
-            <div>
+            <div v-for="info in information">
             <div id="opportunityHolder">
               <div id = 'whiteBackground'>
-                <h1 id="postTitle"><span id="postCategory">CATEGORY</span><br /><br /> 5th grade teacher seeking software engineer for classroom presentation</h1>
+                <h1 id="postTitle"><span id="postCategory">{{info.category}}</span><br /><br />{{info.title}}</h1>
                 <hr />
                 <div id="section1">
-                  <p id="postInfo">Post By: Test Seeker Name, Test Job Title, Test Organization Name on Date Posted</p>
-                  <p id="postDescription">Test Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p id="postInfo">More Info <a href="">Website Name</a></p>
-                  <p id="postDates">Placeholder for 1 of three graphics showing time and date, or ongoing</p>
+                  <p id="postInfo">Post By: {{info.first_name}} {{info.last_name}}, {{info.job_title}} at {{info.organization_name}} on {{newStartDate(info.created_at)}}</p>
+                  <p id="postDescription">{{info.description}}</p>
+                  <p id="postInfoLink"><a v-bind:href="info.website_url">Visit Website</a></p>
+                  <div v-if="info.start_date && info.end_date">
+                    <p id="postDates">{{newStartDate(info.start_date)}} - {{newStartDate(info.end_date)}}</p>
+                  </div>
+                  <div v-if="!info.start_date && !info.end_date">
+                    <p id="postDates">Ongoing - We're Flexible!</p>
+                  </div>
+                  <div v-if="info.start_time">
+                    <p id="postDates">{{newStartDate(info.start_date)}} from {{newStartTime(`2018-01-30T${info.start_time}`)}} to {{newStartTime(`2018-01-30T${info.end_time}`)}}</p>
+                  </div>
                 </div>
                 <div id="section2">
-                  <p id="postLocation">Location: Test Location Name <br /> Address Line 1 <br /> City, State, Zip</p>
+                  <p id="postLocation">{{info.location_name}}<br /> {{info.address}} <br /> {{info.city}}, {{info.state}}, {{info.zip}}</p>
                 </div>
               <button id="sendMessage" v-on:click="requestInfo = !requestInfo" >Connect <img height="12px"src="../assets/arrowicon.png" /></button>
               <transition name="slide">
@@ -119,9 +127,7 @@
             </div>
             </div>
             <div id="greenLine"></div>
-            </div>
-
-
+          </div>
           </div>
       </article>
     </div>
@@ -133,7 +139,10 @@
 
 import UserNav from './UserNav.vue'
 import AppFooter from './AppFooter.vue'
-import axios from 'axios';
+import axios from 'axios'
+import moment from "moment"
+
+
 export default {
   name: 'User',
   components: { UserNav, AppFooter },
@@ -142,23 +151,40 @@ export default {
       msg: 'Test message',
       menu: true,
       information:[],
+      userName: [],
       requestInfo:''
     }
   },
   methods:{
+    newStartDate: function(date) {
+      return moment(date).format('LL');
+    },
+    newStartTime: function(time) {
+      return moment(time).format('LT');
+    },
     logout: function(){
       localStorage.removeItem('usertoken');
       this.$router.push('/')
     },
     getInfo: function() {
-        axios.get('/allOpportunities').then(response => {
-          let information = response.data;
-          console.log(information)
+      let token = localStorage.getItem('usertoken');
+        axios.get(`/allOpportunities?token=${token}`).then(response => {
+          this.information = response.data ;
         })
+      },
+    getUserName: function() {
+      let token2 = localStorage.getItem('usertoken');
+      axios.get(`/userInfo?token=${token2}`).then(response => {
+        this.userName = response.data ;
+      })
+    },
+    moment: function () {
+      return moment();
       }
     },
     created() {
-      this.getInfo()
+      this.getInfo(),
+      this.getUserName()
     }
   }
 
@@ -399,31 +425,31 @@ fieldset {
       }
 
       @keyframes fadein {
-          from { opacity: 0; }
+          from { opacity:.7; }
           to   { opacity: 1; }
       }
 
       /* Firefox < 16 */
       @-moz-keyframes fadein {
-          from { opacity: 0; }
+          from { opacity:.7; }
           to   { opacity: 1; }
       }
 
       /* Safari, Chrome and Opera > 12.1 */
       @-webkit-keyframes fadein {
-          from { opacity: 0; }
+          from { opacity:.7; }
           to   { opacity: 1; }
       }
 
       /* Internet Explorer */
       @-ms-keyframes fadein {
-          from { opacity: 0; }
+          from { opacity:.7; }
           to   { opacity: 1; }
       }
 
       /* Opera < 12.1 */
       @-o-keyframes fadein {
-          from { opacity: 0; }
+          from { opacity:.7; }
           to   { opacity: 1; }
       }
 
@@ -527,6 +553,13 @@ fieldset {
 #postInfo {
   font-weight: bolder;
   font-size: 15px;
+}
+
+#postInfoLink {
+  font-weight: bolder;
+  font-size: 15px;
+  color: !important #1D976C;
+  font-weight: bolder;
 }
 
 #postDescription {

@@ -4,7 +4,7 @@
     <div class="wrapper">
       <nav class="main-nav">
         <div id ="main-navHolder">
-          <p id="welcomeName">Welcome, Trevor!</p>
+          <p id="welcomeName">Welcome,<br /> {{seekerName.first_name}}!</p>
           <div id="greenLine"></div>
             <div id = "menu">
               <a><router-link id="menuLink" to="/seeker-profile" exact>Your Profile<br />
@@ -97,26 +97,26 @@
             <form>
               <form id = "dateOptions">
                   <h3>Choose a Date Option</h3><br />
-                  <input type="radio" name="Date" id="radioButton" checked> <label for="ongoing">Ongoing/Flexible</label><br /><br />
-                  <input type="radio" name="Date" id="radioButton"> <label for="singleDate">Date and Time</label><br /><br />
-                  <input type="radio" name="Date" id="radioButton"> <label for="singleDate">Date Range</label><br /><br />
-              </form>
+                  <input type="radio" name="Date" id="radioButton" checked> <label for="ongoing">Ongoing/Flexible</label><br />
+                  <input type="radio" name="Date" id="radioButton"> <label for="singleDate">Date and Time</label><br />
+                  <input type="radio" name="Date" id="radioButton"> <label for="singleDate">Date Range</label><br />
+              </form><br />
               <div id="singleDate">
-                <label for="start_date">Date:</label><br />
-                <input id="input2" name="start_date" type="date"><br />
-                <label for="start_time">Start Time:</label><br />
-                <input id="input2" name="start_time" type="time"><br />
-                <label for="start_time">End Time:</label><br />
-                <input id="input2" name="end_time" type="time"><br />
+                <label for="start_date">Date:</label>
+                <input id="input4" name="start_date" type="date">
+                <label for="start_time">Start Time:</label>
+                <input id="input4" name="start_time" type="time">
+                <label for="start_time">End Time:</label>
+                <input id="input4" name="end_time" type="time">
               </div>
               <div id="dateRange">
-                <label for="start_date">Start Date:</label><br />
-                <input id="input2" name="start_date" type="date"><br />
-                <label for="end_date">End Date:</label><br />
-                <input id="input2" name="end_date" type="date"><br />
+                <label for="start_date">Start Date:</label>
+                <input id="input4" name="start_date" type="date">
+                <label for="end_date">End Date:</label>
+                <input id="input4" name="end_date" type="date">
               </div>
               <div id="category">
-                <label for="categories">Category:</label><br />
+                <label for="categories">Category:</label>
                 <select id="categories" name="categories">
                   <option value="Select Option" selected disabled>Select an Option</option>
                   <option value="Classroom Speaker">Classroom Speaker</option>
@@ -132,54 +132,46 @@
                   <option value="Workshop Presenter">Workshop Presenter</option>
                 </select>
               </div>
-                <div>
                     <label for="title">Title:</label><br />
-                    <input id="input2" type="text" name="title" required>
-                </div><br />
-                <div>
-                    <label for="description">Description:</label><br />
+                    <input id="input3" type="text" name="title" required><br />
+                    <label for="description">Description:</label>
                     <textarea id="differentShadow" name="description" required></textarea>
-                </div><br />
-                <div>
-                    <label for="website_url">Website URL:</label><br />
-                    <input id="input2" type="text" name="website_url" required>
-                </div><br />
-                <div>
-                    <label for="location_name">Location Name:</label><br />
-                    <input id="input2" type="text" name="location_name" required>
-                </div><br />
-                <div>
-                    <label for="address">Address:</label><br />
-                    <input id="input2" type="text" name="address" required>
-                </div><br />
-                <div>
-                    <label for="city">City:</label><br />
-                    <input id="input2" type="text" name="city" required>
-                </div><br />
-                <div>
-                    <label for="state">State:</label><br />
-                    <input id="input2" type="text" name="state" required>
-                </div><br />
-                <div>
-                    <label for="zip">Zip:</label><br />
+                    <label for="website_url">Website URL:</label>
+                    <input id="input2" type="text" name="website_url" required><br />
+                    <label for="location_name">Location Name:</label>
+                    <input id="input2" type="text" name="location_name" required><br />
+                    <label for="address">Address:</label>
+                    <input id="input2" type="text" name="address" required><br />
+                    <label for="city">City:</label>
+                    <input id="input2" type="text" name="city" required><br />
+                    <label for="state">State:</label>
+                    <input id="input2" type="text" name="state" required><br />
+                    <label for="zip">Zip:</label>
                     <input id="input2" type="text" name="zip" required>
-                </div><br />
                 <button type="submit" id="filterButton2">Submit</button>
             </form>
           </div>
         </div>
         <img width="96.5%" id="imageHeader" src="../assets/posts.png" />
           <div id="opportunityOverflow">
-            <div>
+            <div v-for="info in information">
             <div id="opportunityHolder">
-              <div v-for="info in information"id = 'whiteBackground'>
+              <div id = 'whiteBackground'>
                 <h1 id="postTitle"><span id="postCategory">{{info.category}}</span><br /><br /> {{info.title}}</h1>
                 <hr />
                 <div id="section1">
-                  <p id="postInfo">Date Posted: {{info.created_at}}</p>
+                  <p id="postInfo">Date Posted: {{newStartDate(info.created_at)}}</p>
                   <p id="postDescription">Description: {{info.description}}</p>
-                  <p id="postInfo">More Info: <a href="">{{info.website_url}}</a></p>
-                  <p id="postDates">Placeholder for 1 of three graphics showing time and date, or ongoing</p>
+                  <p id="postInfo"><a v-bind:href="info.website_url">Visit Website</a></p>
+                  <div v-if="info.start_date && info.end_date">
+                    <p id="postDates">{{newStartDate(info.start_date)}} - {{newStartDate(info.end_date)}}</p>
+                  </div>
+                  <div v-if="!info.start_date && !info.end_date">
+                    <p id="postDates">Ongoing - We're Flexible!</p>
+                  </div>
+                  <div v-if="info.start_time">
+                    <p id="postDates">{{newStartDate(info.start_date)}} from {{newStartTime(`2018-01-30T${info.start_time}`)}} to {{newStartTime(`2018-01-30T${info.end_time}`)}}</p>
+                  </div>
                 </div>
                 <div id="section2">
                   <p id="postLocation">Location: {{info.location_name}}<br /> {{info.address}} <br /> {{info.city}}, {{info.state}}, {{info.zip}}</p>
@@ -190,28 +182,30 @@
               <transition name="slide">
                 <div id = "requestInfo" v-if="requestInfo">
                   <p id="inquiryHeader">From: {{msg.first_name}} {{msg.last_name}} - {{msg.job_title}} at {{msg.company_name}}</p>
-                  <p id="smallText">Date: {{msg.created_at}}  </p>
+                  <p id="smallText">Date: {{newStartDate(msg.created_at)}}  </p>
                   <p id="inquiryDescription">{{msg.message}}</p>
-                  <p id="inquiryDescription2">View Profile on <img id="linkedIn" src="../assets/linked.png" /></p>
-                  <p id="inquiryDescription2">Send Mail<img id="mail" src="../assets/mailwhite.png" /></p>
-                  <p id="inquiryDescription2">Phone: 000-000-0000</p>
+                  <a v-bind:href='msg.linkedin_url'><img id="linkedIn" src="../assets/linked.png" /></a>
+                  <p id="inquiryDescription2"><a id="mailTag" v-bind:href="`mailto:${msg.email}`">Send Mail<img id="mail" src="../assets/mailwhite.png" /></a></p>
                 </div>
               </transition>
-                          </div>
+            </div>
             </div>
           </div>
-            </div>
-
-          </div>
+          <div id="greenLine"></div>
+        </div>
+        </div>
       </article>
     </div>
-    <AppFooter></AppFooter>  </div>
+    <AppFooter></AppFooter>
+  </div>
 </template>
 
 <script>
 import UserNav from './UserNav.vue'
 import AppFooter from './AppFooter.vue'
 import axios from 'axios';
+import moment from "moment"
+
 
 export default {
   name: 'SeekerPage',
@@ -220,10 +214,17 @@ export default {
     return {
       msg: 'Test message',
       requestInfo: "",
-      information:[]
+      information:[],
+      seekerName: []
     }
   },
   methods:{
+    newStartDate: function(date) {
+      return moment(date).format('LL');
+    },
+    newStartTime: function(time) {
+      return moment(time).format('LT');
+    },
     logout: function(){
       localStorage.removeItem('usertoken');
       this.$router.push('/')
@@ -232,12 +233,18 @@ export default {
       let token = localStorage.getItem('usertoken');
         axios.get('/posts/getone?token='+token).then(response => {
           this.information = response.data ;
-          console.log("DATA", this.information)
+        })
+      },
+      getSeekerName: function() {
+        let token2 = localStorage.getItem('usertoken');
+        axios.get(`/seekerInfo?token=${token2}`).then(response => {
+          this.seekerName = response.data ;
         })
       }
-    },
+      },
     created(){
-    this.getSeekerPosts()
+    this.getSeekerPosts(),
+    this.getSeekerName()
  }
 }
 
@@ -250,19 +257,6 @@ export default {
   text-align: center;
 }
 
-#greenLine {
-  width: 90%;
-  height: 1px;
-  background: #1D976C;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 20px;
-  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-}
 
 #cactus {
   width: 100%;
@@ -418,11 +412,86 @@ form {
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
 }
 
+
+.seekerPage {
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+     -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+
+      }
+
+      @keyframes fadein {
+          from { opacity: .5; }
+          to   { opacity: 1; }
+      }
+
+      /* Firefox < 16 */
+      @-moz-keyframes fadein {
+          from { opacity: .5; }
+          to   { opacity: 1; }
+      }
+
+      /* Safari, Chrome and Opera > 12.1 */
+      @-webkit-keyframes fadein {
+          from { opacity: .5; }
+          to   { opacity: 1; }
+      }
+
+      /* Internet Explorer */
+      @-ms-keyframes fadein {
+          from { opacity: .5; }
+          to   { opacity: 1; }
+      }
+
+      /* Opera < 12.1 */
+      @-o-keyframes fadein {
+          from { opacity: .5; }
+          to   { opacity: 1; }
+
+}
 #input2 {
   font-family: 'Questrial', sans-serif;
   width: 100%;
   padding: 15px;
   margin-bottom: 10px;
+
+  background: white;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #eef2f3, white);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #eef2f3, white);
+  height: 20px;
+  border-radius: 3px;
+  color: black;
+  outline: none;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+}
+
+#input3 {
+  font-family: 'Questrial', sans-serif;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: white;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #eef2f3, white);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #eef2f3, white);
+  height: 20px;
+  border-radius: 3px;
+  color: black;
+  outline: none;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+}
+
+#input4 {
+  font-family: 'Questrial', sans-serif;
+  width: 170px;
+  padding: 15px;
+  margin-bottom: 10px;
+
   background: white;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top, #eef2f3, white);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #eef2f3, white);
@@ -593,31 +662,31 @@ fieldset {
       }
 
       @keyframes fadein {
-          from { opacity: 0; }
+          from { opacity: .7; }
           to   { opacity: 1; }
       }
 
       /* Firefox < 16 */
       @-moz-keyframes fadein {
-          from { opacity: 0; }
+          from { opacity: .7; }
           to   { opacity: 1; }
       }
 
       /* Safari, Chrome and Opera > 12.1 */
       @-webkit-keyframes fadein {
-          from { opacity: 0; }
+          from { opacity: .7; }
           to   { opacity: 1; }
       }
 
       /* Internet Explorer */
       @-ms-keyframes fadein {
-          from { opacity: 0; }
+          from { opacity: .7; }
           to   { opacity: 1; }
       }
 
       /* Opera < 12.1 */
       @-o-keyframes fadein {
-          from { opacity: 0; }
+          from { opacity: .7; }
           to   { opacity: 1; }
       }
 
@@ -766,6 +835,9 @@ fieldset {
   margin-right: auto;
   margin-bottom: 25px;
   border-radius: 20px;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
 }
 
 #postCategory {
@@ -824,7 +896,6 @@ fieldset {
   margin: 0px;
   padding: 20px;
   border-radius: 5px;
-  margin-top: 20px;
 }
 
 textarea {
@@ -955,6 +1026,13 @@ button {
   to {
       transform: translateY(30px)
   }
+}
+
+#mailTag {
+  color: white;
+  font-weight: bolder;
+  margin-left: 1px;
+  margin-right: 2px;
 }
 
 </style>

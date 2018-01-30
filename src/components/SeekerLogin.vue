@@ -14,7 +14,6 @@
       <input type="text" v-model="first_name" placeholder="First Name" required>
       <input type="text" v-model="last_name" placeholder="Last Name" required>
       <input type="email" v-model="email" placeholder="Email Address" required>
-      <input type="text" v-model="phone_number" placeholder="Phone Number" required>
       <input type="text" v-model="job_title" placeholder="Job Title" required>
       <input type="text" v-model="organization_name" placeholder="Organization Name" required>
       <input type="password" v-model="password" placeholder="Password" required><br />
@@ -36,7 +35,6 @@ export default {
       errMsg: false,
       first_name: '',
       last_name: "",
-      phone_number: "",
       job_title: "",
       organization_name: ""
     }
@@ -49,7 +47,7 @@ export default {
       })
     },
     seekerSignup() {
-      axios.post('/seeker/signup', {email:this.email, password:this.password, first_name:this.first_name, last_name:this.last_name, phone_number:this.phone_number, job_title:this.job_title, organization_name:this.organization_name}).then((res)=>{
+      axios.post('/seeker/signup', {email:this.email, password:this.password, first_name:this.first_name, last_name:this.last_name, job_title:this.job_title, organization_name:this.organization_name}).then((res)=>{
         window.location.href = "/login";
       })
     }
@@ -96,7 +94,7 @@ input {
   padding: 10px;
   width: 90%;
   background-color: #fdf1d7;
-  border: 1px solid gray;
+  border:2px solid white;
   font-family: 'Questrial', sans-serif;
   font-size: 15px;
   border-radius: 3px;

@@ -14,7 +14,6 @@
       <input type="text" v-model="first_name" placeholder="First Name" required>
       <input type="text" v-model="last_name" placeholder="Last Name" required>
       <input type="email" v-model="email" placeholder="Email Address" required>
-      <input type="text" v-model="phone_number" placeholder="Phone Number" required>
       <input type="text" v-model="job_title" placeholder="Job Title" required>
       <input type="text" v-model="company_name" placeholder="Company Name" required>
       <input type="text" v-model="linkedin_url" placeholder="LinkedIn URL">
@@ -37,7 +36,6 @@ export default {
       errMsg: false,
       first_name: '',
       last_name: "",
-      phone_number: "",
       job_title: "",
       company_name: "",
       linkedin_url: ""
@@ -46,13 +44,12 @@ export default {
   methods: {
     userLogin() {
       axios.post('/user/login', {email:this.email, password:this.password}).then((res)=>{
-        console.log(res.data.user);
         localStorage.setItem('usertoken', res.data.token);
         this.$router.push('/user-page');
       })
     },
     userSignup() {
-      axios.post('/user/signup', {email:this.email, password:this.password, first_name:this.first_name, last_name:this.last_name, phone_number:this.phone_number, job_title:this.job_title, company_name:this.company_name, linkedin_url:this.linkedin_url}).then((res)=>{
+      axios.post('/user/signup', {email:this.email, password:this.password, first_name:this.first_name, last_name:this.last_name, job_title:this.job_title, company_name:this.company_name, linkedin_url:this.linkedin_url}).then((res)=>{
         window.location.href = "/login";
       })
     }
@@ -99,6 +96,7 @@ input {
   font-family: 'Questrial', sans-serif;
   font-size: 15px;
   border-radius: 3px;
+  border:2px solid white;
 }
 
 button {

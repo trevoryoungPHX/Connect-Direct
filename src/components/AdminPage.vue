@@ -106,11 +106,19 @@
 import AppFooter2 from "./AppFooter2"
 import AdminNav2 from "./AdminNav2"
 import axios from 'axios'
+import moment from "moment"
+
 
 export default {
   name: 'User',
   components: { AppFooter2, AdminNav2 },
   methods:{
+    newStartDate: function(date) {
+      return moment(date).format('LL');
+    },
+    newStartTime: function(time) {
+      return moment(time).format('LT');
+    },
     getUsers: function() {
       if(this.usersDiv){
         this.usersDiv = false;

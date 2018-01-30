@@ -70,31 +70,31 @@ export default {
       }
 
       @keyframes fadein {
-          from { opacity: 0; }
+          from { opacity: .5; }
           to   { opacity: 1; }
       }
 
       /* Firefox < 16 */
       @-moz-keyframes fadein {
-          from { opacity: 0; }
+          from { opacity: .5; }
           to   { opacity: 1; }
       }
 
       /* Safari, Chrome and Opera > 12.1 */
       @-webkit-keyframes fadein {
-          from { opacity: 0; }
+          from { opacity: .5; }
           to   { opacity: 1; }
       }
 
       /* Internet Explorer */
       @-ms-keyframes fadein {
-          from { opacity: 0; }
+          from { opacity: .5; }
           to   { opacity: 1; }
       }
 
       /* Opera < 12.1 */
       @-o-keyframes fadein {
-          from { opacity: 0; }
+          from { opacity: .5; }
           to   { opacity: 1; }
 
 }
@@ -112,7 +112,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
   border-top: 100px solid #2d3e49;
-
   background-image: url("../assets/cactus3.jpeg");
   background-size: cover;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
@@ -184,11 +183,11 @@ export default {
   background-size: cover;
   overflow: hidden;
   width: 100%;
-  height: 800px;
+  height: 850px;
   top: 0;
   left: 0;
   padding-top: 20px;
-  border-bottom: 100px solid #2d3e49;
+  border-bottom: 20px solid #2d3e49;
 }
 
 #learnMore {
