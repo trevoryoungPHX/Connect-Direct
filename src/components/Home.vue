@@ -8,23 +8,17 @@
           <div id="learnMore">Learn More<img id="arrow" src="../assets/down.png" /></div>
         </div>
     </div>
-    <div id = "siteDescriptionHolder">
-      <div id = "siteDescription">
-        <img height="100px" src="../assets/test direct connect logo.png" /><br /><br />
-        <p id="appName"> A place for professionals to connect with organizations, educators & associations<br /> looking for professional development opportunities.</p> <br /><br /><p id="descriptionText"> Whether you are a school teacher looking to expose your students to a new career path, an event planner looking for a conference speaker or workshop presenter, or a business organization looking for someone to provide company tours or serve on a business panel - Connect Direct is the best place to connect directly with professionals eager and willing to give their time and share their expertise. <br /><br /><span id="appName">Start finding new connnctions today!</span></p>
-      </div>
-    </div>
     <div class="content-wrapper">
         <div class="content">
           <ul class="flex-container">
             <li class="flex-item2"><img id ="professional" width="100%" src="../assets/professional.jpg" /></li>
-            <li class="flex-item2"><br /><br />
+            <li class="flex-item2"><br /><br /><br /><br /><br /><br />
                 <p>Classroom Speakers</p>
                 <p>Company Tours</p>
                 <p>Competition Judges</p>
                 <p>Conference Speakers</p>
                 <p>Job Shadowing</p>
-                <p>Materials & Equiptment</p>
+                <p>Materials & Equipment</p>
                 <p>Mentorship Opportunities</p>
                 <p>Mock Interviews</p>
                 <p>Panelists</p>
@@ -40,6 +34,11 @@
           </ul>
         </div>
     </div>
+    </div>
+    <div id = "siteDescriptionHolder">
+      <div id = "siteDescription">
+        <p id="appName"> A place for professionals to connect with organizations, educators & associations looking for professional development opportunities.</p><br /><p id="descriptionText"> Whether you are a school teacher looking to expose your students to a new career path, an event planner looking for a conference speaker or workshop presenter, or a business organization looking for someone to provide company tours or serve on a business panel - Connect Direct is the best place to connect directly with professionals eager and willing to give their time and share their expertise. <br /><br /><span id="appName">Start finding new connnctions today!</span></p>
+      </div>
     </div>
     <div id="footer">
       <p>&copy; 2018 Connect Direct </p>
@@ -99,45 +98,46 @@ export default {
           to   { opacity: 1; }
 
 }
+
 #appName {
   font-weight: bolder;
-  font-style: italic;
-  font-size: 20px;
+  font-size: 30px;
 }
 #descriptionText {
   font-size: 20px;
 }
 #siteDescriptionHolder {
-  width: 80%;
+  width: 100%;
+  min-height: 500px;
   margin-left: auto;
   margin-right: auto;
-  background: #2d3e49;
-  background: -webkit-linear-gradient(to left, #2d3e49, #516f82);
-  background: linear-gradient(to left, #2d3e49, #516f82);
+  border-top: 100px solid #2d3e49;
+
+  background-image: url("../assets/cactus3.jpeg");
+  background-size: cover;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
-  padding:20px;
-  border-radius: 6px;
+  padding:60px;
   margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 #professional {
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
-  border-radius: 6px;
+  margin-top: 50px;
 }
 
 #siteDescription {
-  width: 100%;
+  width: 80%;
   border-radius: 6px;
   margin-left: auto;
   margin-right: auto;
-  background: #FDF1D7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FDF1D7, #fce4b5);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FDF1D7,  #fce4b5);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  opacity: .7;
   padding: 20px;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
@@ -157,7 +157,6 @@ export default {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-
   -webkit-flex-flow: row wrap;
   justify-content: space-around;
 }
@@ -189,6 +188,7 @@ export default {
   top: 0;
   left: 0;
   padding-top: 20px;
+  border-bottom: 100px solid #2d3e49;
 }
 
 #learnMore {
@@ -213,8 +213,8 @@ export default {
 #learnMore2 {
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
-  height: 150px;
+  width: 70%;
+  height: 70px;
   font-size: 20px;
   font-family: 'Questrial', sans-serif;
   background: #1D976C;  /* fallback for old browsers */
@@ -274,27 +274,14 @@ export default {
 
 .content {
   height: AUTO;
-  background: #8e9eab;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-#background {
-  background: #8e9eab;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
 }
 
 #footer {
   background: #2d3e49;
-  background: -webkit-linear-gradient(to left, #2d3e49, #516f82);
-  background: linear-gradient(to left, #2d3e49, #516f82);
   color: white;
   height: 100px;
   width: 100%;
   padding-top: 10px;
-  margin-top: 30px;
   z-index: 200;
 }
 

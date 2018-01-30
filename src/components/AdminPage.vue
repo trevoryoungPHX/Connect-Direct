@@ -118,7 +118,6 @@ export default {
         axios.get('/portal/users').then(response => {
           this.users = response.data;
           this.usersDiv = !this.usersDiv;
-          console.log(this.users)
         })
       }else{
         this.usersDiv = !this.usersDiv;

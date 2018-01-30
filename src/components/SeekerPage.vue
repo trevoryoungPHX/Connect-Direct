@@ -10,9 +10,9 @@
               <a><router-link id="menuLink" to="/seeker-profile" exact>Your Profile<br />
               <img height="40px"src="../assets/profile.png" /></router-link></a><br /><br />
               <a id="menuLink" @click="logout">Log Out<br />
-              <img height="40px"src="../assets/left.png" /></a><br /><br />
-              <a id="menuLink" href="">Invite<br />
-              <img height="30px"src="../assets/mailwhite.png" /></a>
+              <img height="40px"src="../assets/left.png" /></a><br />
+              <!-- <a id="menuLink" href="">Invite<br />
+              <img height="30px"src="../assets/mailwhite.png" /></a> -->
             </div>
           <fieldset>
               <legend id="filterTypeTitle">Search Your Posts <img height="15px"src="../assets/searchwhite.png" /></legend>
@@ -191,7 +191,7 @@
                 <div id = "requestInfo" v-if="requestInfo">
                   <p id="inquiryHeader">From: {{msg.first_name}} {{msg.last_name}} - {{msg.job_title}} at {{msg.company_name}}</p>
                   <p id="smallText">Date: {{msg.created_at}}  </p>
-                  <p id="inquiryDescription">{{msg}}</p>
+                  <p id="inquiryDescription">{{msg.message}}</p>
                   <p id="inquiryDescription2">View Profile on <img id="linkedIn" src="../assets/linked.png" /></p>
                   <p id="inquiryDescription2">Send Mail<img id="mail" src="../assets/mailwhite.png" /></p>
                   <p id="inquiryDescription2">Phone: 000-000-0000</p>
@@ -252,7 +252,7 @@ export default {
 
 #greenLine {
   width: 90%;
-  height: 7px;
+  height: 1px;
   background: #1D976C;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -368,7 +368,7 @@ textarea {
   height: auto;
   margin: 10px;
   font-size: 20px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 6px;
   color: white;
   font-size: 20px;
@@ -725,15 +725,14 @@ fieldset {
   padding-left: 6px;
 }
 #inquiryHeader{
-  font-style: italic;
-  text-decoration: underline;
+  font-weight: bold;
   margin-bottom: 7px;
   font-size: 20px;
 }
 
 #smallText {
   font-size: 13px;
-  font-style: italic;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 

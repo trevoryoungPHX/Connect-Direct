@@ -14,6 +14,16 @@ export default {
 </script>
 
 <style >
+
+input {
+  outline: none;
+}
+
+button {
+  outline: none;
+
+}
+
 html {
   font-family: 'Questrial', sans-serif;
   text-align: center;
