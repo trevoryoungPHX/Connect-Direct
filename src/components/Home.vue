@@ -194,9 +194,10 @@ export default {
 #learnMore {
   margin-left: auto;
   margin-right: auto;
-  padding: 20px;
-  padding-bottom: 30px;
-  width: 50%;
+  padding: 10px;
+  padding-bottom: 20px;
+  margin-top: 120px;
+  width: 250px;
   font-family: 'Questrial', sans-serif;
   font-size: 25px;
   background: #2d3e49;

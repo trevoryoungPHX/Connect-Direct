@@ -11,7 +11,7 @@
               <img height="40px"src="../assets/profile.png" /></router-link></a><br /><br />
               <a id="menuLink" @click="logout">Log Out<br />
               <img height="40px"src="../assets/left.png" /></a><br /><br />
-              <a id="menuLink" href="">Invite<br />
+              <a href="" id="menuLink">Invite<br />
               <img height="30px"src="../assets/mailwhite.png" /></a>
             </div>
           <fieldset>

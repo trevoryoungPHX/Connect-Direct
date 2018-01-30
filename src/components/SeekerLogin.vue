@@ -50,7 +50,7 @@ export default {
     },
     seekerSignup() {
       axios.post('/seeker/signup', {email:this.email, password:this.password, first_name:this.first_name, last_name:this.last_name, phone_number:this.phone_number, job_title:this.job_title, organization_name:this.organization_name}).then((res)=>{
-        window.location.href = "/";
+        window.location.href = "/login";
       })
     }
   }

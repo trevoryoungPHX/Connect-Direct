@@ -7,8 +7,6 @@ import VueAxios from 'vue-axios'
 import axios from 'axios'
 import {Tabs, Tab} from 'vue-tabs-component';
 
-
-
 Vue.use(VueAxios, axios)
 Vue.use(Tabs);
 

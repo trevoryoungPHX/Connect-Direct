@@ -95,13 +95,13 @@
           <img id="cactus" src="../assets/cactus.png" />
           <div id="formHolder">
             <form>
-              <form>
+              <form id = "dateOptions">
                   <h3>Choose a Date Option</h3><br />
                   <input type="radio" name="Date" id="radioButton" checked> <label for="ongoing">Ongoing/Flexible</label><br /><br />
-                  <input type="radio" v-model="x" name="Date" id="radioButton"> <label for="singleDate">Date and Time</label><br /><br />
-                  <input type="radio" v-model="x" name="Date" id="radioButton"> <label for="singleDate">Date Range</label><br /><br />
+                  <input type="radio" name="Date" id="radioButton"> <label for="singleDate">Date and Time</label><br /><br />
+                  <input type="radio" name="Date" id="radioButton"> <label for="singleDate">Date Range</label><br /><br />
               </form>
-              <div id="singleDate" v-show="x === 'singleDate'">
+              <div id="singleDate">
                 <label for="start_date">Date:</label><br />
                 <input id="input2" name="start_date" type="date"><br />
                 <label for="start_time">Start Time:</label><br />
@@ -109,11 +109,28 @@
                 <label for="start_time">End Time:</label><br />
                 <input id="input2" name="end_time" type="time"><br />
               </div>
-              <div id="dateRange" v-show="x === 'dateRange'">
+              <div id="dateRange">
                 <label for="start_date">Start Date:</label><br />
                 <input id="input2" name="start_date" type="date"><br />
                 <label for="end_date">End Date:</label><br />
                 <input id="input2" name="end_date" type="date"><br />
+              </div>
+              <div id="category">
+                <label for="categories">Category:</label><br />
+                <select id="categories" name="categories">
+                  <option value="Select Option" selected disabled>Select an Option</option>
+                  <option value="Classroom Speaker">Classroom Speaker</option>
+                  <option value="Company Tour">Company Tour</option>
+                  <option value="Competition Judge">Competition Judge</option>
+                  <option value="Conference Speaker">Conference Speaker</option>
+                  <option value="Job Shadowing">Job Shadowing</option>
+                  <option value="Materials & Equiptment">Materials & Equiptment</option>
+                  <option value="Mentorship">Mentorship</option>
+                  <option value="Mock Interviews">Mock Interviews</option>
+                  <option value="Panelist">Panelist</option>
+                  <option value="Project Review">Project Review</option>
+                  <option value="Workshop Presenter">Workshop Presenter</option>
+                </select>
               </div>
                 <div>
                     <label for="title">Title:</label><br />
@@ -121,7 +138,11 @@
                 </div><br />
                 <div>
                     <label for="description">Description:</label><br />
-                    <textarea id="description" name="description" required></textarea>
+                    <textarea id="differentShadow" name="description" required></textarea>
+                </div><br />
+                <div>
+                    <label for="website_url">Website URL:</label><br />
+                    <input id="input2" type="text" name="website_url" required>
                 </div><br />
                 <div>
                     <label for="location_name">Location Name:</label><br />
@@ -149,10 +170,38 @@
         </div>
         <img width="96.5%" id="imageHeader" src="../assets/posts.png" />
           <div id="opportunityOverflow">
-          <Post></Post>
-          <Post></Post>
-          <Post></Post>
-          <Post></Post>
+            <div>
+            <div id="opportunityHolder">
+              <div v-for="info in information"id = 'whiteBackground'>
+                <h1 id="postTitle"><span id="postCategory">{{info.category}}</span><br /><br /> {{info.title}}</h1>
+                <hr />
+                <div id="section1">
+                  <p id="postInfo">Date Posted: {{info.created_at}}</p>
+                  <p id="postDescription">Description: {{info.description}}</p>
+                  <p id="postInfo">More Info: <a href="">{{info.website_url}}</a></p>
+                  <p id="postDates">Placeholder for 1 of three graphics showing time and date, or ongoing</p>
+                </div>
+                <div id="section2">
+                  <p id="postLocation">Location: {{info.location_name}}<br /> {{info.address}} <br /> {{info.city}}, {{info.state}}, {{info.zip}}</p>
+                </div>
+              <button id="delete">Delete Post</button><br />
+              <button id="sendMessage" v-on:click="requestInfo = !requestInfo" >View Inquiries <img height="12px"src="../assets/arrowicon.png" /></button>
+              <div v-for="msg in info.messages">
+              <transition name="slide">
+                <div id = "requestInfo" v-if="requestInfo">
+                  <p id="inquiryHeader">From: {{msg.first_name}} {{msg.last_name}} - {{msg.job_title}} at {{msg.company_name}}</p>
+                  <p id="smallText">Date: {{msg.created_at}}  </p>
+                  <p id="inquiryDescription">{{msg}}</p>
+                  <p id="inquiryDescription2">View Profile on <img id="linkedIn" src="../assets/linked.png" /></p>
+                  <p id="inquiryDescription2">Send Mail<img id="mail" src="../assets/mailwhite.png" /></p>
+                  <p id="inquiryDescription2">Phone: 000-000-0000</p>
+                </div>
+              </transition>
+                          </div>
+            </div>
+          </div>
+            </div>
+
           </div>
       </article>
     </div>
@@ -162,28 +211,44 @@
 <script>
 import UserNav from './UserNav.vue'
 import AppFooter from './AppFooter.vue'
-import Post from './Post.vue'
 import axios from 'axios';
 
 export default {
   name: 'SeekerPage',
-  components: { UserNav, AppFooter, Post},
+  components: { UserNav, AppFooter},
   data() {
     return {
-      msg: 'Test message'
+      msg: 'Test message',
+      requestInfo: "",
+      information:[]
     }
   },
   methods:{
     logout: function(){
       localStorage.removeItem('usertoken');
       this.$router.push('/')
-    }
-  }
-
+    },
+    getSeekerPosts: function() {
+      let token = localStorage.getItem('usertoken');
+        axios.get('/posts/getone?token='+token).then(response => {
+          this.information = response.data ;
+          console.log("DATA", this.information)
+        })
+      }
+    },
+    created(){
+    this.getSeekerPosts()
+ }
 }
+
 </script>
 
 <style scoped>
+
+
+#dateOptions {
+  text-align: center;
+}
 
 #greenLine {
   width: 90%;
@@ -208,9 +273,26 @@ export default {
   margin-bottom: 15px;
 }
 
-#radioButton {
-  border: 0;
+#category {
+  color: black;
 }
+
+#categories {
+  font-family: 'Questrial', sans-serif;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  background: white;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #eef2f3, white);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #eef2f3, white);
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  margin-bottom: 10px;
+}
+
+
 #newPostHeader {
   color: black;
   font-size: 35px;
@@ -344,9 +426,6 @@ form {
   background: white;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to top, #eef2f3, white);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #eef2f3, white);
-  -webkit-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
-  -moz-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
-  box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
   height: 20px;
   border-radius: 3px;
   color: black;
@@ -616,6 +695,267 @@ fieldset {
 }
 .control-checkbox input:disabled ~ .control_indicator:after {
     border-color: #7b7b7b;
+}
+
+
+#delete {
+  padding: 5px;
+  width: 100px;
+  margin-top: 5px;
+  font-family: 'Questrial', sans-serif;
+  cursor: pointer;
+  font-size: 15px;
+  background: red;
+  color: white;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+}
+
+#linkedIn {
+  height: 20px;
+  margin-bottom: -2.5px;
+  padding-left: 3px;
+}
+
+#mail {
+  height: 20px;
+  margin-bottom: -1.0px;
+  padding-left: 6px;
+}
+#inquiryHeader{
+  font-style: italic;
+  text-decoration: underline;
+  margin-bottom: 7px;
+  font-size: 20px;
+}
+
+#smallText {
+  font-size: 13px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+#inquiryDescription{
+  padding: 0;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: black;
+  background: #ece9e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ece9e6, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ece9e6, #ffffff);
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  background: white;
+}
+
+#inquiryDescription2{
+  padding-right: 10;
+  font-size: 18px;
+}
+
+#greenLine {
+  width: 90%;
+  height: 7px;
+  background: #1D976C;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  border-radius: 20px;
+}
+
+#postCategory {
+  color: #1D976C;
+  font-weight: bolder;
+}
+
+#postInfo {
+  font-weight: bolder;
+  font-size: 15px;
+}
+
+#postDescription {
+  font-size: 15px;
+}
+
+#postDates {
+  border-radius: 3px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 0;
+  color: black;
+  background: #ece9e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ece9e6, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ece9e6, #ffffff);
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+  background: white;
+  font-size: 20px;
+}
+
+#sendMessage {
+  width: 150px;
+  margin-top: 15px;
+}
+
+#requestInfo {
+  margin-top: 20px;
+  padding: 10px;
+  text-align: left;
+  color: white;
+  background: #2d3e49;
+  background: -webkit-linear-gradient(to left, #2d3e49, #516f82);
+  background: linear-gradient(to left, #2d3e49, #516f82);
+  border-radius: 3px;
+  -webkit-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+}
+
+#whiteBackground {
+  background: #ece9e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #ece9e6, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #ece9e6, #ffffff);
+  margin: 0px;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+textarea {
+  width:100%;
+  height: 100px;
+  font-size: 20px;
+  border-radius: 5px;
+  color: black;
+  background: white;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #eef2f3, white);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #eef2f3, white);
+  -webkit-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  outline: none;
+  padding: 10PX;
+}
+
+#differentShadow{
+  width:100%;
+  height: 100px;
+  font-size: 20px;
+  border-radius: 5px;
+  color: black;
+  background: white;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #eef2f3, white);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #eef2f3, white);
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  outline: none;
+  padding: 10PX;
+}
+
+#section1 {
+    height: auto;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+    -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+    box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+    background: #FDF1D7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FDF1D7, #fce4b5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FDF1D7,  #fce4b5);
+}
+
+#section2 {
+    height: auto;
+    width: 70%;
+    margin-left: auto;
+    color: white;
+    margin-right: auto;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: bolder;
+    padding-top: 15px;
+    padding-bottom: 1px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+    -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+    box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
+    background: #2d3e49;
+    background: -webkit-linear-gradient(to left, #2d3e49, #516f82);
+    background: linear-gradient(to left, #2d3e49, #516f82);
+}
+
+#opportunityHolder {
+  padding: 10;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  margin-bottom: 30px;
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+    padding: 10px;
+    width: 30%;
+    font-family: 'Questrial', sans-serif;
+    cursor: pointer;
+    font-size: 15px;
+    background: #1D976C;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+    -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+    box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+}
+
+.slide-enter {
+  opacity: 0;
+}
+
+.slide-enter-active {
+  animation: slide-in 1s ease-out forwards;
+  transition: opacity 0.5s;
+}
+
+.slide-leave {
+
+}
+
+.slide-leave-active {
+  animation: slide-out 1s ease-out forwards;
+  transition: opacity 1s;
+  opacity: 0;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(30px)
+  }
+  to {
+    transform: translateY(0)
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(0)
+  }
+  to {
+      transform: translateY(30px)
+  }
 }
 
 </style>

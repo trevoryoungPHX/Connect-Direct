@@ -44,6 +44,7 @@ h1 {
 .userProfile  {
   height: auto;
   background-image: url("../assets/network.jpeg");
+  background-size: cover;
   margin-bottom: 0px;
   padding-top: 80px;
   padding-bottom: 80px;

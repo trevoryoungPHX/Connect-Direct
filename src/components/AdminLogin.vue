@@ -19,11 +19,10 @@
 <script>
 
 import AdminNav from './AdminNav.vue'
-import SplashFooter from './SplashFooter.vue'
 import axios from 'axios'
 export default {
   name: 'AdminLogin',
-  components: { AdminNav, SplashFooter },
+  components: { AdminNav },
   data() {
     return {
       email: '',
@@ -47,8 +46,8 @@ export default {
 
 .adminLogin {
   background-image: url(../assets/image3.jpg);
+  padding-bottom: 200px;
   background-size: cover;
-  min-height: 1200px;
   background-repeat: no-repeat;
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
    -moz-animation: fadein 2s; /* Firefox < 16 */

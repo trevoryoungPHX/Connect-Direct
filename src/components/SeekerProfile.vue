@@ -11,7 +11,6 @@
             <input type="text" placeholder="Phone Number" required>
             <input type="text" placeholder="Job Title" required>
             <input type="text" placeholder="Organization Name" required>
-            <input type="text" placeholder="LinkedIn URL">
             <input type="password" placeholder="Password" required><br />
             <button type='submit' id="button1">Save <img height="15px"src="../assets/arrowicon.png" /></button><br />
           </form>
@@ -44,6 +43,7 @@ h1 {
 .seekerProfile  {
   height: auto;
   background-image: url("../assets/network2.jpeg");
+  background-size: cover;
   margin-bottom: 0px;
   padding-top: 80px;
   padding-bottom: 80px;
