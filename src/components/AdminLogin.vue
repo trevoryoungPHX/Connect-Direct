@@ -33,7 +33,6 @@ export default {
   methods: {
     adminLogin() {
       axios.post('/admin/login', {email:this.email, password:this.password}).then((res)=>{
-        console.log(res.data.user);
         localStorage.setItem('usertoken', res.data.token);
         this.$router.push('/admin-page');
       })

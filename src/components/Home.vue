@@ -12,7 +12,7 @@
         <div class="content">
           <ul class="flex-container">
             <li class="flex-item2"><img id ="professional" width="100%" src="../assets/professional.jpg" /></li>
-            <li class="flex-item2"><br /><br /><br /><br /><br /><br />
+            <li class="flex-item2"><br /><br /><br /><br />
                 <p>Classroom Speakers</p>
                 <p>Company Tours</p>
                 <p>Competition Judges</p>

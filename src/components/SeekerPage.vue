@@ -94,30 +94,63 @@
         <div id="newPost">
           <img id="cactus" src="../assets/cactus.png" />
           <div id="formHolder">
-            <form>
-              <form id = "dateOptions">
-                  <h3>Choose a Date Option</h3><br />
-                  <input type="radio" name="Date" id="radioButton" checked> <label for="ongoing">Ongoing/Flexible</label><br />
-                  <input type="radio" name="Date" id="radioButton"> <label for="singleDate">Date and Time</label><br />
-                  <input type="radio" name="Date" id="radioButton"> <label for="singleDate">Date Range</label><br />
-              </form><br />
-              <div id="singleDate">
-                <label for="start_date">Date:</label>
-                <input id="input4" name="start_date" type="date">
-                <label for="start_time">Start Time:</label>
-                <input id="input4" name="start_time" type="time">
-                <label for="start_time">End Time:</label>
-                <input id="input4" name="end_time" type="time">
-              </div>
-              <div id="dateRange">
-                <label for="start_date">Start Date:</label>
-                <input id="input4" name="start_date" type="date">
-                <label for="end_date">End Date:</label>
-                <input id="input4" name="end_date" type="date">
+            <h1 id="postCategory">Choose Date Options</h1><br />
+            <select id="categories" name="parent" class="form-control" v-model="selected" required>
+                  <option disabled >Select An Option</option>
+                  <option value="item0">Ongoing</option>
+                  <option value="item1">Date & Time</option>
+                  <option value="item2">Date Range</option>
+            </select>
+
+            <form v-if="selected === 'item0'" @submit.prevent="submitPostOngoing">
+            <div id="category">
+              <label for="categories">Category:</label>
+              <select id="categories" v-model="category" name="category" required>
+                <option value="Select Option" selected disabled>Select an Option</option>
+                <option value="Classroom Speaker">Classroom Speaker</option>
+                <option value="Company Tour">Company Tour</option>
+                <option value="Competition Judge">Competition Judge</option>
+                <option value="Conference Speaker">Conference Speaker</option>
+                <option value="Job Shadowing">Job Shadowing</option>
+                <option value="Materials & Equiptment">Materials & Equiptment</option>
+                <option value="Mentorship">Mentorship</option>
+                <option value="Mock Interviews">Mock Interviews</option>
+                <option value="Panelist">Panelist</option>
+                <option value="Project Review">Project Review</option>
+                <option value="Workshop Presenter">Workshop Presenter</option>
+              </select>
+            </div>
+                  <label for="title">Title:</label><br />
+                  <input id="input3" v-model="title" type="text" name="title" required><br />
+                  <label for="description">Description:</label>
+                  <textarea id="differentShadow" v-model="description" name="description" required></textarea>
+                  <label for="website_url">Website URL:</label>
+                  <input id="input2" type="text" v-model="website_url" name="website_url" required><br />
+                  <label for="location_name">Location Name:</label>
+                  <input id="input2" type="text" v-model="location_name" name="location_name" required><br />
+                  <label for="address">Address:</label>
+                  <input id="input2" type="text" v-model="address" name="address" required><br />
+                  <label for="city">City:</label>
+                  <input id="input2" type="text" v-model="city" name="city" required><br />
+                  <label for="state">State:</label>
+                  <input id="input2" type="text" v-model="state" name="state" required><br />
+                  <label for="zip">Zip:</label>
+                  <input id="input2" type="text" v-model="zip" name="zip" required>
+              <button type="submit" id="filterButton2">Submit</button>
+            </form>
+
+              <form v-if="selected === 'item2'" @submit.prevent="submitPostRange">
+              <div>
+                <div id="dateRange">
+                  <label for="start_date">Start Date:</label>
+                  <input id="input4" v-model="start_date" name="start_date" type="date">
+                  <label for="end_date">End Date:</label>
+                  <input id="input4" v-model="end_date" name="end_date" type="date">
+                </div>
               </div>
               <div id="category">
                 <label for="categories">Category:</label>
-                <select id="categories" name="categories">
+                <select id="categories" v-model="category" name="categories" required>
                   <option value="Select Option" selected disabled>Select an Option</option>
                   <option value="Classroom Speaker">Classroom Speaker</option>
                   <option value="Company Tour">Company Tour</option>
@@ -133,23 +166,71 @@
                 </select>
               </div>
                     <label for="title">Title:</label><br />
-                    <input id="input3" type="text" name="title" required><br />
+                    <input id="input3" v-model="title" type="text" name="title" required><br />
                     <label for="description">Description:</label>
-                    <textarea id="differentShadow" name="description" required></textarea>
+                    <textarea id="differentShadow" v-model="description" name="description" required></textarea>
                     <label for="website_url">Website URL:</label>
-                    <input id="input2" type="text" name="website_url" required><br />
+                    <input id="input2" type="text" v-model="website_url" name="website_url" required><br />
                     <label for="location_name">Location Name:</label>
-                    <input id="input2" type="text" name="location_name" required><br />
+                    <input id="input2" type="text" v-model="location_name" name="location_name" required><br />
                     <label for="address">Address:</label>
-                    <input id="input2" type="text" name="address" required><br />
+                    <input id="input2" type="text" v-model="address" name="address" required><br />
                     <label for="city">City:</label>
-                    <input id="input2" type="text" name="city" required><br />
+                    <input id="input2" type="text" v-model="city" name="city" required><br />
                     <label for="state">State:</label>
-                    <input id="input2" type="text" name="state" required><br />
+                    <input id="input2" type="text" v-model="state" name="state" required><br />
                     <label for="zip">Zip:</label>
-                    <input id="input2" type="text" name="zip" required>
+                    <input id="input2" type="text" v-model="zip" name="zip" required>
+                <button type="submit" id="filterButton2">Submit</button>
+              </form>
+
+            <form v-if="selected === 'item1'" @submit.prevent="submitPostTime">
+            <div>
+              <div id="singleDate">
+                <label for="start_date">Date:</label>
+                <input id="input4" v-model="start_date" name="start_date" type="date">
+                <label for="start_time">Start Time:</label>
+                <input id="input4" v-model="start_time" name="start_time" type="time">
+                <label for="start_time">End Time:</label>
+                <input id="input4" v-model="end_time" name="end_time" type="time">
+              </div>
+            </div>
+              <div id="category">
+                <label for="categories">Category:</label>
+                <select id="categories" v-model="category" name="categories" required>
+                  <option value="Select Option" selected disabled>Select an Option</option>
+                  <option value="Classroom Speaker">Classroom Speaker</option>
+                  <option value="Company Tour">Company Tour</option>
+                  <option value="Competition Judge">Competition Judge</option>
+                  <option value="Conference Speaker">Conference Speaker</option>
+                  <option value="Job Shadowing">Job Shadowing</option>
+                  <option value="Materials & Equiptment">Materials & Equiptment</option>
+                  <option value="Mentorship">Mentorship</option>
+                  <option value="Mock Interviews">Mock Interviews</option>
+                  <option value="Panelist">Panelist</option>
+                  <option value="Project Review">Project Review</option>
+                  <option value="Workshop Presenter">Workshop Presenter</option>
+                </select>
+              </div>
+                    <label for="title">Title:</label><br />
+                    <input id="input3" v-model="title" type="text" name="title" required><br />
+                    <label for="description">Description:</label>
+                    <textarea id="differentShadow" v-model="description" name="description" required></textarea>
+                    <label for="website_url">Website URL:</label>
+                    <input id="input2" type="text" v-model="website_url" name="website_url" required><br />
+                    <label for="location_name">Location Name:</label>
+                    <input id="input2" type="text" v-model="location_name" name="location_name" required><br />
+                    <label for="address">Address:</label>
+                    <input id="input2" type="text" v-model="address" name="address" required><br />
+                    <label for="city">City:</label>
+                    <input id="input2" type="text" v-model="city" name="city" required><br />
+                    <label for="state">State:</label>
+                    <input id="input2" type="text" v-model="state" name="state" required><br />
+                    <label for="zip">Zip:</label>
+                    <input id="input2" type="text" v-model="zip" name="zip" required>
                 <button type="submit" id="filterButton2">Submit</button>
             </form>
+
           </div>
         </div>
         <img width="96.5%" id="imageHeader" src="../assets/posts.png" />
@@ -215,10 +296,42 @@ export default {
       msg: 'Test message',
       requestInfo: "",
       information:[],
-      seekerName: []
+      seekerName: [],
+      selected: "",
+      start_date: '',
+      end_date: '',
+      start_time: '',
+      end_time: '',
+      category: '',
+      title: '',
+      description: '',
+      website_url: '',
+      location_name: '',
+      address: '',
+      city: '',
+      state: '',
+      zip: ''
     }
   },
   methods:{
+      submitPostOngoing() {
+        let token = localStorage.getItem('usertoken');
+        axios.post(`/opportunities?token=${token}`, {category:this.category, title:this.title, description:this.description, website_url:this.website_url, location_name:this.location_name, address:this.address, city:this.city, state:this.state, zip:this.zip}).then(response => {
+          this.opportunities = response.data;
+        })
+      },
+      submitPostRange() {
+        let token = localStorage.getItem('usertoken');
+        axios.post(`/opportunities?token=${token}`, {start_date:this.start_date, end_date:this.end_date, category:this.category, title:this.title, description:this.description, website_url:this.website_url, location_name:this.location_name, address:this.address, city:this.city, state:this.state, zip:this.zip}).then(response => {
+          this.opportunities = response.data;
+        })
+      },
+      submitPostTime() {
+        let token = localStorage.getItem('usertoken');
+        axios.post(`/opportunities?token=${token}`, {start_date:this.start_date, start_time:this.start_time, end_time:this.end_time, category:this.category, title:this.title, description:this.description, website_url:this.website_url, location_name:this.location_name, address:this.address, city:this.city, state:this.state, zip:this.zip}).then(response => {
+          this.opportunities = response.data;
+        })
+      },
     newStartDate: function(date) {
       return moment(date).format('LL');
     },
@@ -236,8 +349,8 @@ export default {
         })
       },
       getSeekerName: function() {
-        let token2 = localStorage.getItem('usertoken');
-        axios.get(`/seekerInfo?token=${token2}`).then(response => {
+        let token = localStorage.getItem('usertoken');
+        axios.get(`/seekerInfo?token=${token}`).then(response => {
           this.seekerName = response.data ;
         })
       }
@@ -252,11 +365,9 @@ export default {
 
 <style scoped>
 
-
 #dateOptions {
   text-align: center;
 }
-
 
 #cactus {
   width: 100%;
