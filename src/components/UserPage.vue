@@ -12,18 +12,18 @@
               <a id="menuLink" @click="logout">Log Out<br />
               <img height="40px"src="../assets/left.png" /></a><br />
             </div>
+            <div id="greenLine"></div>
+
           <fieldset>
               <legend id="filterTypeTitle">Search <img height="15px"src="../assets/searchwhite.png" /></legend>
-              <input type="search" placeholder="'Health Care' or 'Engineering'" id="search" name=""><br />
-              <button id="filterButton">Find</button>
+              <input type="search" v-model="search" placeholder="Title or Description" id="search" name=""><br />
           </fieldset>
           <br />
           <hr />
           <br />
           <fieldset>
               <legend id="filterTypeTitle">Filter By Location <img height="15px"src="../assets/locationwhite.png" /></legend>
-              <input type="search" placeholder="'85251' or 'Scottsdale'" id="search" name=""><br />
-              <button id="filterButton">Locate</button>
+              <input type="search" v-model="searchCity" placeholder="'85251' or 'Scottsdale'" id="search" name=""><br />
           </fieldset>
           <br />
           <hr />
@@ -32,67 +32,66 @@
           <div class="control-group">
             <label class="control control-checkbox">
                 Classroom Speaker
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Classroom Speaker" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
                 Company Tour
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Company Tour" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
                 Competition Judge
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Competition Judge" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
                 Conference Speaker
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Conference Speaker" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
                 Job Shadowing
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Job Shadowing" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
-              Materials & Equiptment
-                    <input type="checkbox" name="" value="" />
+              Materials & Equipment
+                    <input type="checkbox" value="Materials & Equipment" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
                 Mentorship
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Mentorship" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
-                Mock Interviewing
-                    <input type="checkbox" name="" value="" />
+                Mock Interviews
+                    <input type="checkbox" value="Mock Interview" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
                 Panelist
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Panelist" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
               Project Review
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Project Review" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
               Workshop Presenter
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Workshop Presenter" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label><br />
         </div>
-
         </div>
       </nav>
       <article class="content">
         <img width="100%" id="imageHeader" src="../assets/opportunities.png" />
           <div id="opportunityOverflow">
-            <div v-for="info in information">
+            <div v-for="info in filteredList">
             <div id="opportunityHolder">
               <div id = 'whiteBackground'>
                 <h1 id="postTitle"><span id="postCategory">{{info.category}}</span><br /><br />{{info.title}}</h1>
@@ -153,14 +152,42 @@ export default {
       information:[],
       userName: [],
       requestInfo:'',
-      message: ""
+      message: "",
+      search: '',
+      searchCity: '',
+      searchCategory: []
     }
+  },
+  computed: {
+    filteredList() {
+      let searchfilter = this.information.filter(posts => {
+        let title = posts.title.toLowerCase()
+        let description = posts.description.toLowerCase()
+        let search = this.search.toLowerCase()
+        return title.includes(search) || description.includes(search)
+      })
+
+      let zipFilter = searchfilter.filter(posts => {
+        let zip = posts.zip.toString()
+        let city = posts.city.toLowerCase()
+        let searchCity = this.searchCity.toLowerCase()
+        return city.includes(searchCity) || zip.includes(searchCity)
+      })
+
+      return zipFilter.filter(posts => {
+        if(this.searchCategory.length === 0){
+          return posts
+        }else{
+          return this.searchCategory.includes(posts.category)
+        }
+
+    })
+  }
   },
   methods:{
     postInfo(id) {
       let token = localStorage.getItem('usertoken');
       axios.post(`/postInfo?token=${token}`, {message:this.message, opportunity_id:this.information.id}).then(response => {
-        console.log("INFO", this.information)
         this.info = response.data;
       })
     },

@@ -56,7 +56,7 @@
             </label>
             <label class="control control-checkbox">
               Materials & Equipment
-                    <input type="checkbox" value="Materials Equipment" name="" v-model="searchCategory" />
+                    <input type="checkbox" value="Materials & Equipment" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
@@ -108,7 +108,7 @@
                 <option value="Competition Judge">Competition Judge</option>
                 <option value="Conference Speaker">Conference Speaker</option>
                 <option value="Job Shadowing">Job Shadowing</option>
-                <option value="Materials & Equiptment">Materials & Equiptment</option>
+                <option value="Materials & Equipment">Materials & Equipment</option>
                 <option value="Mentorship">Mentorship</option>
                 <option value="Mock Interviews">Mock Interviews</option>
                 <option value="Panelist">Panelist</option>
@@ -153,7 +153,7 @@
                   <option value="Competition Judge">Competition Judge</option>
                   <option value="Conference Speaker">Conference Speaker</option>
                   <option value="Job Shadowing">Job Shadowing</option>
-                  <option value="Materials & Equiptment">Materials & Equiptment</option>
+                  <option value="Materials & Equipment">Materials & Equipment</option>
                   <option value="Mentorship">Mentorship</option>
                   <option value="Mock Interviews">Mock Interviews</option>
                   <option value="Panelist">Panelist</option>
@@ -200,7 +200,7 @@
                   <option value="Competition Judge">Competition Judge</option>
                   <option value="Conference Speaker">Conference Speaker</option>
                   <option value="Job Shadowing">Job Shadowing</option>
-                  <option value="Materials & Equiptment">Materials & Equiptment</option>
+                  <option value="Materials & Equipment">Materials & Equipment</option>
                   <option value="Mentorship">Mentorship</option>
                   <option value="Mock Interviews">Mock Interviews</option>
                   <option value="Panelist">Panelist</option>
@@ -316,7 +316,7 @@ export default {
       let searchfilter = this.information.filter(posts => {
         let title = posts.title.toLowerCase()
         let search = this.search.toLowerCase()
-        return title.includes(search)
+        return title.includes(search) || description.includes(search)
       })
 
       let zipFilter = searchfilter.filter(posts => {
