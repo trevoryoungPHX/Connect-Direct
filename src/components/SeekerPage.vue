@@ -4,7 +4,7 @@
     <div class="wrapper">
       <nav class="main-nav">
         <div id ="main-navHolder">
-          <p id="welcomeName">Welcome,<br /> {{seekerName.first_name}}!</p>
+          <p id="welcomeName">Welcome,<br /> {{userName}}!</p>
           <div id="greenLine"></div>
             <div id = "menu">
               <a><router-link id="menuLink" to="/seeker-profile" exact>Your Profile<br />
@@ -93,7 +93,7 @@
           <div id="formHolder">
             <h1 id="postCategory">Choose Date Options</h1><br />
             <select id="categories" name="parent" class="form-control" v-model="selected" required>
-              <option disabled >Select An Option</option>
+              <option disabled selected>Select An Option</option>
               <option value="item0">Ongoing</option>
               <option value="item1">Date & Time</option>
               <option value="item2">Date Range</option>
@@ -340,19 +340,20 @@ export default {
       submitPostOngoing() {
         let token = localStorage.getItem('usertoken');
         axios.post(`/opportunities?token=${token}`, {category:this.category, title:this.title, description:this.description, website_url:this.website_url, location_name:this.location_name, address:this.address, city:this.city, state:this.state, zip:this.zip}).then(response => {
-          this.opportunities = response.data;
+          console.log(response.data);
+          this.information = response.data;
         })
       },
       submitPostRange() {
         let token = localStorage.getItem('usertoken');
         axios.post(`/opportunities?token=${token}`, {start_date:this.start_date, end_date:this.end_date, category:this.category, title:this.title, description:this.description, website_url:this.website_url, location_name:this.location_name, address:this.address, city:this.city, state:this.state, zip:this.zip}).then(response => {
-          this.opportunities = response.data;
+          this.information = response.data;
         })
       },
       submitPostTime() {
         let token = localStorage.getItem('usertoken');
         axios.post(`/opportunities?token=${token}`, {start_date:this.start_date, start_time:this.start_time, end_time:this.end_time, category:this.category, title:this.title, description:this.description, website_url:this.website_url, location_name:this.location_name, address:this.address, city:this.city, state:this.state, zip:this.zip}).then(response => {
-          this.opportunities = response.data;
+          this.information = response.data;
         })
       },
     newStartDate: function(date) {
@@ -375,7 +376,7 @@ export default {
       getSeekerName: function() {
         let token = localStorage.getItem('usertoken');
         axios.get(`/seekerInfo?token=${token}`).then(response => {
-          this.seekerName = response.data ;
+          this.userName = response.data.first_name ;
         })
       }
       },
@@ -400,10 +401,6 @@ export default {
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   border-radius: 6px;
   margin-bottom: 15px;
-}
-
-#category {
-  color: black;
 }
 
 #searchForm {
@@ -980,8 +977,12 @@ fieldset {
 
 #postCategory {
   color: #1D976C;
+
   font-weight: bolder;
 }
+
+
+
 
 #postInfo {
   font-weight: bolder;

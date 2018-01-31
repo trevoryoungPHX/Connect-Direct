@@ -4,7 +4,7 @@
     <div class="wrapper">
       <nav class="main-nav">
         <div id ="main-navHolder">
-          <p id="welcomeName">Welcome,<br /> {{userName.first_name}}!</p>
+          <p id="welcomeName">Welcome,<br /> {{userName}}!</p>
           <div id="greenLine"></div>
             <div id = "menu">
               <a><router-link id="menuLink" to="/user-profile" exact>Your Profile<br  />
@@ -19,14 +19,14 @@
               <input type="search" v-model="search" placeholder="Title or Description" id="search" name=""><br />
           </fieldset>
           <br />
-          <hr />
+            <hr />
           <br />
           <fieldset>
               <legend id="filterTypeTitle">Filter By Location <img height="15px"src="../assets/locationwhite.png" /></legend>
               <input type="search" v-model="searchCity" placeholder="'85251' or 'Scottsdale'" id="search" name=""><br />
           </fieldset>
           <br />
-          <hr />
+            <hr />
           <br />
           <br /><h3 id="filterTypeTitle2">Filter By Type <img height="15px"src="../assets/typewhite.png" /></h3>
           <div class="control-group">
@@ -116,8 +116,8 @@
               <button id="sendMessage" v-on:click="requestInfo = !requestInfo" >Connect <img height="12px"src="../assets/arrowicon.png" /></button>
               <transition name="slide">
                 <div id = "requestInfo" v-if="requestInfo">
-                  <form @submit.prevent="postInfo">
-                    <textarea width="100%"></textarea><br />
+                  <form @submit.prevent="postInfo(info.op_id)">
+                    <textarea width="100%" v-model="message"></textarea><br />
                     <button id="sendMessage" type="submit">Send Message <img height="10px"src="../assets/mailwhite.png" /></button><br />
                     <br /><p><b>Once sent, your contact information will be shared with the opportunity organizer.<br />Connect Direct will only share your contact information with those you have reached out to.</b> </p>
                   </form>
@@ -187,7 +187,9 @@ export default {
   methods:{
     postInfo(id) {
       let token = localStorage.getItem('usertoken');
-      axios.post(`/postInfo?token=${token}`, {message:this.message, opportunity_id:this.information.id}).then(response => {
+      axios.post(`/postInfo?token=${token}`, {message:this.message, opportunity_id:id}).then(response => {
+        this.message = "";
+        this.requestInfo = false;
         this.info = response.data;
       })
     },
@@ -208,9 +210,9 @@ export default {
         })
       },
     getUserName: function() {
-      let token2 = localStorage.getItem('usertoken');
-      axios.get(`/userInfo?token=${token2}`).then(response => {
-        this.userName = response.data ;
+      let token = localStorage.getItem('usertoken');
+      axios.get(`/userInfo?token=${token}`).then(response => {
+        this.userName = response.data.first_name ;
       })
     },
     moment: function () {

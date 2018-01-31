@@ -38,10 +38,10 @@ export default {
 <style scoped>
 
 #userProfile {
-  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-   -moz-animation: fadein 2s; /* Firefox < 16 */
-    -ms-animation: fadein 2s; /* Internet Explorer */
-     -o-animation: fadein 2s; /* Opera < 12.1 */
+  -webkit-animation: fadein 2s;
+   -moz-animation: fadein 2s;
+    -ms-animation: fadein 2s;
+     -o-animation: fadein 2s;
         animation: fadein 2s;
 
       }
@@ -51,25 +51,21 @@ export default {
           to   { opacity: 1; }
       }
 
-      /* Firefox < 16 */
       @-moz-keyframes fadein {
           from { opacity: .5; }
           to   { opacity: 1; }
       }
 
-      /* Safari, Chrome and Opera > 12.1 */
       @-webkit-keyframes fadein {
           from { opacity: .5; }
           to   { opacity: 1; }
       }
 
-      /* Internet Explorer */
       @-ms-keyframes fadein {
           from { opacity: .5; }
           to   { opacity: 1; }
       }
 
-      /* Opera < 12.1 */
       @-o-keyframes fadein {
           from { opacity: .5; }
           to   { opacity: 1; }
@@ -108,9 +104,9 @@ button {
   cursor: pointer;
   margin: 20px;
   font-size: 20px;
-  background: #1D976C;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #1D976C;
+  background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);
+  background: linear-gradient(to top, #7bd19a, #1D976C); 
   color: white;
   border-radius: 3px;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);

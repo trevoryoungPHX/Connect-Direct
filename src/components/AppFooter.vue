@@ -27,4 +27,8 @@ export default {
   margin-top: 10px;
 }
 
+a {
+  color: white;
+}
+
 </style>

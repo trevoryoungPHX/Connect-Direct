@@ -42,7 +42,7 @@
     </div>
     <div id="footer">
       <p>&copy; 2018 Connect Direct </p>
-      <p>Developed by <a target="_blank" href="http://trevdev.co">trevdev.co</a></p>
+      <p>Developed by <a id = "myWebsite" target="_blank" href="http://trevdev.co">trevdev.co</a></p>
     </div>
     </div>
 </template>
@@ -59,6 +59,10 @@ export default {
 </script>
 
 <style scoped>
+
+#myWebsite {
+  color: white;
+}
 
 .home {
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
