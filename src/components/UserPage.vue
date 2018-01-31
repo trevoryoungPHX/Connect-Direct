@@ -117,7 +117,7 @@
               <button id="sendMessage" v-on:click="requestInfo = !requestInfo" >Connect <img height="12px"src="../assets/arrowicon.png" /></button>
               <transition name="slide">
                 <div id = "requestInfo" v-if="requestInfo">
-                  <form>
+                  <form @submit.prevent="postInfo">
                     <textarea width="100%"></textarea><br />
                     <button id="sendMessage" type="submit">Send Message <img height="10px"src="../assets/mailwhite.png" /></button><br />
                     <br /><p><b>Once sent, your contact information will be shared with the opportunity organizer.<br />Connect Direct will only share your contact information with those you have reached out to.</b> </p>
@@ -152,10 +152,18 @@ export default {
       menu: true,
       information:[],
       userName: [],
-      requestInfo:''
+      requestInfo:'',
+      message: ""
     }
   },
   methods:{
+    postInfo(id) {
+      let token = localStorage.getItem('usertoken');
+      axios.post(`/postInfo?token=${token}`, {message:this.message, opportunity_id:this.information.id}).then(response => {
+        console.log("INFO", this.information)
+        this.info = response.data;
+      })
+    },
     newStartDate: function(date) {
       return moment(date).format('LL');
     },

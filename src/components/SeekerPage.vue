@@ -11,80 +11,77 @@
               <img height="40px"src="../assets/profile.png" /></router-link></a><br /><br />
               <a id="menuLink" @click="logout">Log Out<br />
               <img height="40px"src="../assets/left.png" /></a><br />
-              <!-- <a id="menuLink" href="">Invite<br />
-              <img height="30px"src="../assets/mailwhite.png" /></a> -->
             </div>
-          <fieldset>
+            <div id="greenLine"></div>
+          <form id="searchForm">
               <legend id="filterTypeTitle">Search Your Posts <img height="15px"src="../assets/searchwhite.png" /></legend>
-              <input type="search" placeholder="'Health Care' or 'Engineering'" id="input" name=""><br />
-              <button id="filterButton">Find</button>
-          </fieldset>
+              <input type="search" v-model="search" placeholder="Title or Description" id="input"><br />
+          </form>
           <br />
-          <hr />
+            <hr />
           <br />
           <fieldset>
               <legend id="filterTypeTitle">Filter By Location <img height="15px"src="../assets/locationwhite.png" /></legend>
-              <input type="search" placeholder="'85251' or 'Scottsdale'" id="input" name=""><br />
-              <button id="filterButton">Locate</button>
+              <input v-model="searchCity" type="search" placeholder="'85251' or 'Scottsdale'" id="input" name=""><br />
           </fieldset>
           <br />
-          <hr />
+            <hr />
           <br />
           <br /><h3 id="filterTypeTitle2">Filter By Type <img height="15px"src="../assets/typewhite.png" /></h3>
           <div class="control-group">
             <label class="control control-checkbox">
                 Classroom Speaker
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Classroom Speaker" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
                 Company Tour
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Company Tour" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
                 Competition Judge
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Competition Judge" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
                 Conference Speaker
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Conference Speaker" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
                 Job Shadowing
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Job Shadowing" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
-              Materials & Equiptment
-                    <input type="checkbox" name="" value="" />
+              Materials & Equipment
+                    <input type="checkbox" value="Materials Equipment" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
                 Mentorship
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Mentorship" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
-                Mock Interviewing
-                    <input type="checkbox" name="" value="" />
+                Mock Interviews
+                    <input type="checkbox" value="Mock Interview" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
                 Panelist
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Panelist" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
               Project Review
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Project Review" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label>
             <label class="control control-checkbox">
               Workshop Presenter
-                    <input type="checkbox" name="" value="" />
+                    <input type="checkbox" value="Workshop Presenter" name="" v-model="searchCategory" />
                 <div class="control_indicator"></div>
             </label><br />
         </div>
@@ -96,12 +93,11 @@
           <div id="formHolder">
             <h1 id="postCategory">Choose Date Options</h1><br />
             <select id="categories" name="parent" class="form-control" v-model="selected" required>
-                  <option disabled >Select An Option</option>
-                  <option value="item0">Ongoing</option>
-                  <option value="item1">Date & Time</option>
-                  <option value="item2">Date Range</option>
+              <option disabled >Select An Option</option>
+              <option value="item0">Ongoing</option>
+              <option value="item1">Date & Time</option>
+              <option value="item2">Date Range</option>
             </select>
-
             <form v-if="selected === 'item0'" @submit.prevent="submitPostOngoing">
             <div id="category">
               <label for="categories">Category:</label>
@@ -235,7 +231,7 @@
         </div>
         <img width="96.5%" id="imageHeader" src="../assets/posts.png" />
           <div id="opportunityOverflow">
-            <div v-for="info in information">
+            <div v-for="info in filteredList">
             <div id="opportunityHolder">
               <div id = 'whiteBackground'>
                 <h1 id="postTitle"><span id="postCategory">{{info.category}}</span><br /><br /> {{info.title}}</h1>
@@ -287,7 +283,6 @@ import AppFooter from './AppFooter.vue'
 import axios from 'axios';
 import moment from "moment"
 
-
 export default {
   name: 'SeekerPage',
   components: { UserNav, AppFooter},
@@ -310,8 +305,36 @@ export default {
       address: '',
       city: '',
       state: '',
-      zip: ''
+      zip: '',
+      search: '',
+      searchCity: '',
+      searchCategory: []
     }
+  },
+  computed: {
+    filteredList() {
+      let searchfilter = this.information.filter(posts => {
+        let title = posts.title.toLowerCase()
+        let search = this.search.toLowerCase()
+        return title.includes(search)
+      })
+
+      let zipFilter = searchfilter.filter(posts => {
+        let zip = posts.zip.toString()
+        let city = posts.city.toLowerCase()
+        let searchCity = this.searchCity.toLowerCase()
+        return city.includes(searchCity) || zip.includes(searchCity)
+      })
+
+      return zipFilter.filter(posts => {
+        if(this.searchCategory.length === 0){
+          return posts
+        }else{
+          return this.searchCategory.includes(posts.category)
+        }
+
+    })
+  }
   },
   methods:{
       submitPostOngoing() {
@@ -334,6 +357,7 @@ export default {
       },
     newStartDate: function(date) {
       return moment(date).format('LL');
+
     },
     newStartTime: function(time) {
       return moment(time).format('LT');
@@ -382,6 +406,9 @@ export default {
   color: black;
 }
 
+#searchForm {
+  color: white;
+}
 #categories {
   font-family: 'Questrial', sans-serif;
   width: 100%;

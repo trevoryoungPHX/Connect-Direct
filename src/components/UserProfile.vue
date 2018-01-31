@@ -8,7 +8,6 @@
             <input type="text"  placeholder="First Name" required>
             <input type="text"  placeholder="Last Name" required>
             <input type="email" placeholder="Email Address" required>
-            <input type="text" placeholder="Phone Number" required>
             <input type="text" placeholder="Job Title" required>
             <input type="text" placeholder="Company Name" required>
             <input type="text" placeholder="LinkedIn URL">
