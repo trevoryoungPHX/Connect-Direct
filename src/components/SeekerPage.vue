@@ -253,7 +253,6 @@
                 <div id="section2">
                   <p id="postLocation">Location: {{info.location_name}}<br /> {{info.address}} <br /> {{info.city}}, {{info.state}}, {{info.zip}}</p>
                 </div>
-              <button id="delete">Delete Post</button><br />
               <button id="sendMessage" v-on:click="requestInfo = !requestInfo" >View Inquiries <img height="12px"src="../assets/arrowicon.png" /></button>
               <div v-for="msg in info.messages">
               <transition name="slide">

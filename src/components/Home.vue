@@ -41,7 +41,7 @@
       </div>
     </div>
     <div id="footer">
-      <p>&copy; 2018 Connect Direct </p>
+      <p>&copy; 2018 Connect Direct - IN DEVELOPMENT MODE! Please contact trevoryoung.web@gmail.com with any inquiries.</p>
       <p>Developed by <a id = "myWebsite" target="_blank" href="http://trevdev.co">trevdev.co</a></p>
     </div>
     </div>
