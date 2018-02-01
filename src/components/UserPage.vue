@@ -91,7 +91,7 @@
       <article class="content">
         <img width="100%" id="imageHeader" src="../assets/opportunities.png" />
           <div id="opportunityOverflow">
-            <div v-for="info in filteredList">
+            <div v-for="info in filteredList">  
             <div id="opportunityHolder">
               <div id = 'whiteBackground'>
                 <h1 id="postTitle"><span id="postCategory">{{info.category}}</span><br /><br />{{info.title}}</h1>

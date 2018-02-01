@@ -10,10 +10,12 @@
             <input type="email" v-model="info.email" placeholder="Email Address" required>
             <input type="text" v-model="info.job_title" placeholder="Job Title" required>
             <input type="text" v-model="info.company_name" placeholder="Company Name" required>
-            <input type="text" v-model="info.linkedin_url" placeholder="LinkedIn URL">
-            <button type='submit' id="button1">Save </button><br />
+            <<input type="text" v-model="info.linkedin_url" placeholder="LinkedIn URL">
+            <br /><button type='submit' id="button1">Save </button><br />
           </form>
+          <transition name="slide">
           <p v-if="successMessage" id="profileMessage">Profile Updated!<br /><br /><span id="return"><router-link to="/user-page">Return to Opportunity Feed</router-link></span></p>
+          </transition>
         </div>
       </div>
       <AppFooter2></AppFooter2>
@@ -174,6 +176,34 @@ input {
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+}
+
+.slide-enter {
+  opacity: 0;
+}
+
+.slide-enter-active {
+  animation: slide-in 1s ease-out forwards;
+  transition: opacity 0.5s;
+}
+
+.slide-leave {
+
+}
+
+.slide-leave-active {
+  animation: slide-out 1s ease-out forwards;
+  transition: opacity 1s;
+  opacity: 0;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(30px)
+  }
+  to {
+    transform: translateY(0)
+  }
 }
 
 </style>
