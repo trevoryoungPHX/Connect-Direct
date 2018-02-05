@@ -37,7 +37,7 @@
     </div>
     <div id = "siteDescriptionHolder">
       <div id = "siteDescription">
-        <p id="appName"> A place for professionals to connect with organizations, educators & associations looking for professional development opportunities.</p><br /><p id="descriptionText"> Whether you are a school teacher looking to expose your students to a new career path, an event planner looking for a conference speaker or workshop presenter, or a business organization looking for someone to provide company tours or serve on a business panel - Connect Direct is the best place to connect directly with professionals eager and willing to give their time and share their expertise. <br /><br /><span id="appName">Start finding new connnctions today!</span></p>
+        <p id="appName"> A place for professionals to connect with organizations, educators & associations looking for professional development opportunities.</p><br /><p id="descriptionText"> Whether you are a school teacher looking to expose your students to a new career path, an event planner looking for a conference speaker or workshop presenter, or a business organization looking for someone to provide company tours or serve on a business panel - Connect Direct is the best place to connect directly with professionals eager and willing to give their time and share their expertise. <br /><br /><span id="appName">Start finding new connections today!</span></p>
       </div>
     </div>
     <div id="footer">
