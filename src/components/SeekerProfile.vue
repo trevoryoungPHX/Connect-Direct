@@ -68,7 +68,10 @@ export default {
 #profileMessage {
   font-size: 20px;
   font-weight: bold;
+  font-style: italic;
+  color: #2d3e49;
 }
+
 
 #return {
 padding: 13px;

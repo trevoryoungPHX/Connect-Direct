@@ -6,7 +6,7 @@
       <input v-model="email" type="email" placeholder="Email Address" required>
       <input v-model="password" type="password" placeholder="Password" required>
       <button type='submit'>Find Professionals <img height="15px"src="../assets/arrowicon.png" /></button><br />
-      <span id = "error" v-if="errMsg">Invalid login credentials. Please try again.</span><br /><br />
+      <span id = "error" v-if="errMsg">{{errMsg}}</span><br /><br />
       <label for='form-switch'><a>No organization profile? Click here to register!</a></label>
     </form>
     <form id='register-form' @submit.prevent="seekerSignup">
@@ -18,7 +18,8 @@
       <input type="text" v-model="organization_name" placeholder="Organization Name" required>
       <input type="password" v-model="password" placeholder="Password" required><br />
       <button type='submit' id="button1">Get Started <img height="15px"src="../assets/arrowicon.png" /></button><br />
-      <label for='form-switch'><a>Already registered? Click here to sign in!</a></label>
+      <label for='form-switch'><a>Already registered? Click here to sign in!</a></label><br /><br />
+      <span id = "success" v-if="msg">{{msg}}</span><br /><br />
     </form>
   </div>
 
@@ -32,7 +33,8 @@ export default {
     return {
       email: '',
       password: '',
-      errMsg: false,
+      errMsg: "",
+      msg: '',
       first_name: '',
       last_name: "",
       job_title: "",
@@ -44,11 +46,13 @@ export default {
       axios.post('/seeker/login', {email:this.email, password:this.password}).then((res)=>{
         localStorage.setItem('usertoken', res.data.token);
         this.$router.push('/seeker-page');
+      }).catch((err)=>{
+        this.errMsg = err.response.data.errMsg;
       })
     },
     seekerSignup() {
       axios.post('/seeker/signup', {email:this.email, password:this.password, first_name:this.first_name, last_name:this.last_name, job_title:this.job_title, organization_name:this.organization_name}).then((res)=>{
-        window.location.href = "/login";
+      this.msg=res.data.msg;
       })
     }
   }
@@ -158,6 +162,45 @@ button {
           to   { opacity: .95; }
       }
 
+#success {
+  font-style: italic;
+  color: #2d3e49;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+     -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+
+      }
+
+      @keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Firefox < 16 */
+      @-moz-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Safari, Chrome and Opera > 12.1 */
+      @-webkit-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Internet Explorer */
+      @-ms-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Opera < 12.1 */
+      @-o-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
 
 label {
   cursor: pointer;

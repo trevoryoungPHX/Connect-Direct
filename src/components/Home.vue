@@ -3,16 +3,19 @@
     <div class="home">
       <div class="splash-container">
         <div class="splash">
-          <img height="150px" src="../assets/test direct connect logo.png" /><br />
+          <img height="90px" src="../assets/test direct connect logo.png" /><br />
           <router-link to="/login" exact>  <button id="learnMore3">Get Started</button></router-link>
           <div id="learnMore">Learn More<img id="arrow" src="../assets/down.png" /></div>
         </div>
     </div>
+    <h1 id="about">About</h1>
+    <iframe id="youtubeVid" src="https://www.youtube.com/embed/5I_IgxXYHnw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     <div class="content-wrapper">
         <div class="content">
           <ul class="flex-container">
             <li class="flex-item2"><img id ="professional" width="100%" src="../assets/professional.jpg" /></li>
             <li class="flex-item2"><br /><br /><br /><br />
+              <h1 id="getConnected">Get Connected</h1>
                 <p>Classroom Speakers</p>
                 <p>Company Tours</p>
                 <p>Competition Judges</p>
@@ -59,6 +62,27 @@ export default {
 </script>
 
 <style scoped>
+
+#youtubeVid {
+  width: 78.2%;
+  height: 50vw;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
+  border: 3px solid black;
+}
+
+#about {
+  margin-top: 50px;
+  font-size: 50px;
+  text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
+}
+
+#getConnected {
+  font-size: 50px;
+  text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
+  margin-bottom: 20px;
+}
 
 #myWebsite {
   color: white;
@@ -126,9 +150,9 @@ export default {
 }
 
 #professional {
-  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
-  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
-  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
   margin-top: 50px;
 }
 
@@ -182,16 +206,16 @@ export default {
   margin-top: 5px;
 }
 .splash-container {
-  background-image: url(../assets/home.png);\
+  background-image: url(../assets/home.png);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   overflow: hidden;
   width: 100%;
-  height: 850px;
+  height: 950px;
   top: 0;
   left: 0;
   padding-top: 20px;
-  border-bottom: 20px solid #2d3e49;
 }
 
 #learnMore {
@@ -199,18 +223,14 @@ export default {
   margin-right: auto;
   padding: 10px;
   padding-bottom: 20px;
-  margin-top: 120px;
+  margin-top: 270px;
   width: 250px;
   font-family: 'Questrial', sans-serif;
   font-size: 25px;
-  background: #2d3e49;
-  background: -webkit-linear-gradient(to left, #2d3e49, #516f82);
-  background: linear-gradient(to left, #2d3e49, #516f82);
+
   color: white;
   border-radius: 3px;
-  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
-  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
-  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+
 }
 
 #learnMore2 {
@@ -224,7 +244,6 @@ export default {
   background: -webkit-linear-gradient(to top, #7bd19a, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #7bd19a, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
-
   border-radius: 3px;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
@@ -239,7 +258,7 @@ export default {
   margin-top: 205px;
   padding: 20px;
   margin-bottom: 20px;
-  width: 250px;
+  width: 300px;
   font-family: 'Questrial', sans-serif;
   font-size: 25px;
   background: #1D976C;  /* fallback for old browsers */

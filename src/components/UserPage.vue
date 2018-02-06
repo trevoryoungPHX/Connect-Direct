@@ -91,7 +91,7 @@
       <article class="content">
         <img width="100%" id="imageHeader" src="../assets/opportunities.png" />
           <div id="opportunityOverflow">
-            <div v-for="info in filteredList">  
+            <div v-for="info in filteredList">
             <div id="opportunityHolder">
               <div id = 'whiteBackground'>
                 <h1 id="postTitle"><span id="postCategory">{{info.category}}</span><br /><br />{{info.title}}</h1>
@@ -113,7 +113,7 @@
                 <div id="section2">
                   <p id="postLocation">{{info.location_name}}<br /> {{info.address}} <br /> {{info.city}}, {{info.state}}, {{info.zip}}</p>
                 </div>
-              <button id="sendMessage" v-on:click="requestInfo = !requestInfo" >Connect <img height="12px"src="../assets/arrowicon.png" /></button>
+              <button id="sendMessage" v-on:click="requestInfo = !requestInfo" >Connect <img height="12px"src="../assets/arrowicon.png" /></button><br /><br />
               <transition name="slide">
                 <div id = "requestInfo" v-if="requestInfo">
                   <form @submit.prevent="postInfo(info.op_id)">
@@ -123,6 +123,7 @@
                   </form>
                 </div>
               </transition>
+              <span id = "success" v-if="msg">{{msg}}</span><br /><br />
             </div>
             </div>
             <div id="greenLine"></div>
@@ -147,7 +148,7 @@ export default {
   components: { UserNav, AppFooter },
   data() {
     return {
-      msg: 'Test message',
+      msg: '',
       menu: true,
       information:[],
       userName: [],
@@ -191,6 +192,7 @@ export default {
         this.message = "";
         this.requestInfo = false;
         this.info = response.data;
+        this.msg= response.data.msg
       })
     },
     newStartDate: function(date) {
@@ -228,6 +230,49 @@ export default {
 </script>
 
 <style scoped>
+
+#success {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 20px;
+  color: #2d3e49;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+     -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+
+      }
+
+      @keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Firefox < 16 */
+      @-moz-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Safari, Chrome and Opera > 12.1 */
+      @-webkit-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Internet Explorer */
+      @-ms-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Opera < 12.1 */
+      @-o-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
 #greenLine {
   width: 90%;
   height: 7px;

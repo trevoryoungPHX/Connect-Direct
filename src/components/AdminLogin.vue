@@ -7,8 +7,8 @@
           <h1>Admin Login</h1>
           <input v-model="email" type="email" placeholder="Email Address" required>
           <input v-model="password" type="password" placeholder="Password" required>
-          <button type='submit'>Access Admin Panel</button>
-          <span id = "error" v-if="errMsg">Invalid login credentials. Please try again.</span><br /><br />
+          <button type='submit'>Access Admin Panel</button><br />
+          <span id = "error" v-if="errMsg">{{errMsg}}</span><br /><br />
           <img width="70%" src="../assets/test direct connect logo.png" /><br /><br />
         </form>
       </div>
@@ -27,7 +27,7 @@ export default {
     return {
       email: '',
       password: '',
-      errMsg: false
+      errMsg: ''
     }
   },
   methods: {
@@ -35,6 +35,9 @@ export default {
       axios.post('/admin/login', {email:this.email, password:this.password}).then((res)=>{
         localStorage.setItem('usertoken', res.data.token);
         this.$router.push('/admin-page');
+      }).catch((err)=>{
+        console.log(err.response.data.errMsg);
+        this.errMsg = err.response.data.errMsg;
       })
     }
   }
@@ -42,6 +45,50 @@ export default {
 </script>
 
 <style scoped>
+
+#error {
+  font-style: italic;
+  color: red;
+  font-weight: bolder;
+  font-size: 20px;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+     -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+
+      }
+
+      @keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Firefox < 16 */
+      @-moz-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Safari, Chrome and Opera > 12.1 */
+      @-webkit-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Internet Explorer */
+      @-ms-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Opera < 12.1 */
+      @-o-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+
 
 .adminLogin {
   background-image: url(../assets/image3.jpg);

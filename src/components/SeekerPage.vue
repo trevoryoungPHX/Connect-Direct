@@ -132,7 +132,8 @@
                   <input id="input2" type="text" v-model="state" name="state" required><br />
                   <label for="zip">Zip:</label>
                   <input id="input2" type="text" v-model="zip" name="zip" required>
-              <button type="submit" id="filterButton2">Submit</button>
+              <button type="submit" id="filterButton2">Submit</button><br /><br />
+              <span id = "error" v-if="msg">{{msg}}</span><br /><br />
             </form>
 
               <form v-if="selected === 'item2'" @submit.prevent="submitPostRange">
@@ -177,7 +178,8 @@
                     <input id="input2" type="text" v-model="state" name="state" required><br />
                     <label for="zip">Zip:</label>
                     <input id="input2" type="text" v-model="zip" name="zip" required>
-                <button type="submit" id="filterButton2">Submit</button>
+                  <button type="submit" id="filterButton2">Submit</button><br /><br />
+                  <span id = "error" v-if="msg">{{msg}}</span><br /><br />
               </form>
 
             <form v-if="selected === 'item1'" @submit.prevent="submitPostTime">
@@ -224,7 +226,8 @@
                     <input id="input2" type="text" v-model="state" name="state" required><br />
                     <label for="zip">Zip:</label>
                     <input id="input2" type="text" v-model="zip" name="zip" required>
-                <button type="submit" id="filterButton2">Submit</button>
+                    <button type="submit" id="filterButton2">Submit</button><br /><br />
+                    <span id = "error" v-if="msg">{{msg}}</span><br /><br />
             </form>
 
           </div>
@@ -253,15 +256,23 @@
                 <div id="section2">
                   <p id="postLocation">Location: {{info.location_name}}<br /> {{info.address}} <br /> {{info.city}}, {{info.state}}, {{info.zip}}</p>
                 </div>
+              <button id="delete" v-on:click="confirmDelete = !confirmDelete">Delete Post</button><br />
+              <transition name="slide">
+                <div id="confirmDelete" v-if="confirmDelete">
+                  <br />
+                  Are you sure you want to delete this post?<br />
+                  <button id="yes" @click="deletePost(info.id)">Yes</button> <button id="no" v-on:click="confirmDelete = !confirmDelete">No</button>
+                </div>
+              </transition>
               <button id="sendMessage" v-on:click="requestInfo = !requestInfo" >View Inquiries <img height="12px"src="../assets/arrowicon.png" /></button>
-              <div v-for="msg in info.messages">
+              <div v-for="mssg in info.messages">
               <transition name="slide">
                 <div id = "requestInfo" v-if="requestInfo">
-                  <p id="inquiryHeader">From: {{msg.first_name}} {{msg.last_name}} - {{msg.job_title}} at {{msg.company_name}}</p>
-                  <p id="smallText">Date: {{newStartDate(msg.created_at)}}  </p>
-                  <p id="inquiryDescription">{{msg.message}}</p>
-                  <a v-bind:href='msg.linkedin_url'><img id="linkedIn" src="../assets/linked.png" /></a>
-                  <p id="inquiryDescription2"><a id="mailTag" v-bind:href="`mailto:${msg.email}`">Send Mail<img id="mail" src="../assets/mailwhite.png" /></a></p>
+                  <p id="inquiryHeader">From: {{mssg.first_name}} {{mssg.last_name}} - {{mssg.job_title}} at {{mssg.company_name}}</p>
+                  <p id="smallText">Date: {{newStartDate(mssg.created_at)}}  </p>
+                  <p id="inquiryDescription">{{mssg.message}}</p>
+                  <a v-bind:href='mssg.linkedin_url'><img id="linkedIn" src="../assets/linked.png" /></a>
+                  <p id="inquiryDescription2"><a id="mailTag" v-bind:href="`mailto:${mssg.email}`">Send Mail<img id="mail" src="../assets/mailwhite.png" /></a></p>
                 </div>
               </transition>
             </div>
@@ -287,8 +298,11 @@ export default {
   components: { UserNav, AppFooter},
   data() {
     return {
-      msg: 'Test message',
+      msg: '',
+      mssg: '',
       requestInfo: "",
+      confirmDelete: false,
+      userName: "",
       information:[],
       seekerName: [],
       selected: "",
@@ -337,39 +351,55 @@ export default {
   },
   methods:{
       submitPostOngoing() {
+        if(this.website_url.slice(0,7)!=="http://"){
+          this.website_url = "http://"+this.website_url;
+        }
         let token = localStorage.getItem('usertoken');
         axios.post(`/opportunities?token=${token}`, {category:this.category, title:this.title, description:this.description, website_url:this.website_url, location_name:this.location_name, address:this.address, city:this.city, state:this.state, zip:this.zip}).then(response => {
-          console.log(response.data);
-          this.information = response.data;
+          this.information = response.data.opportunities;
+          this.msg= response.data.msg
         })
       },
       submitPostRange() {
+        if(this.website_url.slice(0,7)!=="http://"){
+          this.website_url = "http://"+this.website_url;
+        }
         let token = localStorage.getItem('usertoken');
         axios.post(`/opportunities?token=${token}`, {start_date:this.start_date, end_date:this.end_date, category:this.category, title:this.title, description:this.description, website_url:this.website_url, location_name:this.location_name, address:this.address, city:this.city, state:this.state, zip:this.zip}).then(response => {
-          this.information = response.data;
+          this.information = response.data.opportunities;
+          this.msg= response.data.msg
         })
       },
       submitPostTime() {
+        if(this.website_url.slice(0,7)!=="http://"){
+          this.website_url = "http://"+this.website_url;
+        }
         let token = localStorage.getItem('usertoken');
         axios.post(`/opportunities?token=${token}`, {start_date:this.start_date, start_time:this.start_time, end_time:this.end_time, category:this.category, title:this.title, description:this.description, website_url:this.website_url, location_name:this.location_name, address:this.address, city:this.city, state:this.state, zip:this.zip}).then(response => {
-          this.information = response.data;
+          this.information = response.data.opportunities;
+          this.msg= response.data.msg
         })
       },
     newStartDate: function(date) {
       return moment(date).format('LL');
-
-    },
+      },
     newStartTime: function(time) {
       return moment(time).format('LT');
-    },
+      },
     logout: function(){
       localStorage.removeItem('usertoken');
       this.$router.push('/')
-    },
+      },
     getSeekerPosts: function() {
       let token = localStorage.getItem('usertoken');
         axios.get('/posts/getone?token='+token).then(response => {
           this.information = response.data ;
+        })
+      },
+    deletePost: function(id) {
+      let token = localStorage.getItem('usertoken');
+        axios.delete(`/opportunities/${id}/?token=`+token).then(response => {
+          this.information = response.data;
         })
       },
       getSeekerName: function() {
@@ -391,6 +421,79 @@ export default {
 
 #dateOptions {
   text-align: center;
+}
+
+#error {
+  color: black;
+  font-size: 20px;
+  font-weight: bolder;
+  text-align: center;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+     -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+
+      }
+
+      @keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Firefox < 16 */
+      @-moz-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Safari, Chrome and Opera > 12.1 */
+      @-webkit-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Internet Explorer */
+      @-ms-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Opera < 12.1 */
+      @-o-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+
+#yes {
+  padding: 5px;
+  width: 90px;
+  margin-top: 5px;
+  font-family: 'Questrial', sans-serif;
+  cursor: pointer;
+  font-size: 15px;
+  background: red;
+  color: white;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+}
+
+#no {
+  padding: 5px;
+  width: 90px;
+  margin-top: 5px;
+  font-family: 'Questrial', sans-serif;
+  cursor: pointer;
+  font-size: 15px;
+  background-color: #2d3e49;
+  color: white;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
 }
 
 #cactus {
@@ -903,7 +1006,7 @@ fieldset {
 
 #delete {
   padding: 5px;
-  width: 100px;
+  width: 90px;
   margin-top: 5px;
   font-family: 'Questrial', sans-serif;
   cursor: pointer;

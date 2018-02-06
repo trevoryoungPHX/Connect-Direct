@@ -10,7 +10,7 @@ import {Tabs, Tab} from 'vue-tabs-component';
 Vue.use(VueAxios, axios)
 Vue.use(Tabs);
 
-Vue.axios.defaults.baseURL = 'https://connect-direct.herokuapp.com'
+Vue.axios.defaults.baseURL = 'http://localhost:8000'
 
 Vue.config.productionTip = false
 Vue.router = router

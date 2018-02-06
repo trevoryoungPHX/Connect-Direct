@@ -6,7 +6,7 @@
       <input v-model="email" type="email" placeholder="Email Address" required>
       <input v-model="password" type="password" placeholder="Password" required>
       <button type='submit'>Let's Do This <img height="15px"src="../assets/arrowicon.png" /></button><br />
-      <span id = "error" v-if="errMsg">Invalid login credentials. Please try again.</span><br /><br />
+      <span id = "error" v-if="errMsg">{{errMsg}}</span><br /><br />
       <label for='form-switch'><a>Not a member? Click here to register!</a></label>
     </form>
     <form id='register-form' @submit.prevent="userSignup">
@@ -19,7 +19,8 @@
       <input type="text" v-model="linkedin_url" placeholder="LinkedIn URL">
       <input type="password" v-model="password" placeholder="Password" required><br />
       <button type='submit' id="button1">Get Started <img height="15px"src="../assets/arrowicon.png" /></button><br />
-      <label for='form-switch'><a>Already a member? Click here to sign in!</a></label>
+      <label for='form-switch'><a>Already a member? Click here to sign in!</a></label><br /><br />
+      <span id = "success" v-if="msg">{{msg}}</span><br /><br />
     </form>
   </div>
 
@@ -33,12 +34,13 @@ export default {
     return {
       email: '',
       password: '',
-      errMsg: false,
+      errMsg: '',
       first_name: '',
       last_name: "",
       job_title: "",
       company_name: "",
-      linkedin_url: ""
+      linkedin_url: "",
+      msg: ""
     }
   },
   methods: {
@@ -46,11 +48,16 @@ export default {
       axios.post('/user/login', {email:this.email, password:this.password}).then((res)=>{
         localStorage.setItem('usertoken', res.data.token);
         this.$router.push('/user-page');
+      }).catch((err)=>{
+        this.errMsg = err.response.data.errMsg;
       })
     },
     userSignup() {
+      if(this.linkedin_url.slice(0,7)!=="http://"){
+        this.linkedin_url = "http://"+this.linkedin_url;
+      }
       axios.post('/user/signup', {email:this.email, password:this.password, first_name:this.first_name, last_name:this.last_name, job_title:this.job_title, company_name:this.company_name, linkedin_url:this.linkedin_url}).then((res)=>{
-        window.location.href = "/login";
+        this.msg=res.data.msg;
       })
     }
   }
@@ -158,6 +165,45 @@ button {
       }
 
 
+#success {
+  font-style: italic;
+  color: #2d3e49;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+     -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+
+      }
+
+      @keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Firefox < 16 */
+      @-moz-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Safari, Chrome and Opera > 12.1 */
+      @-webkit-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Internet Explorer */
+      @-ms-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
+
+      /* Opera < 12.1 */
+      @-o-keyframes fadein {
+          from { opacity: 0; }
+          to   { opacity: .95; }
+      }
 label {
   cursor: pointer;
 }
