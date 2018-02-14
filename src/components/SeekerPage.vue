@@ -229,11 +229,8 @@
                     <button type="submit" id="filterButton2">Submit</button><br /><br />
                     <span id = "error" v-if="msg">{{msg}}</span><br /><br />
             </form>
-
           </div>
-        </div>
-        <img width="96.5%" id="imageHeader" src="../assets/posts.png" />
-          <div id="opportunityOverflow">
+            <img id="imageHeader" src="../assets/posts.png" />
             <div v-for="info in filteredList">
             <div id="opportunityHolder">
               <div id = 'whiteBackground'>
@@ -555,10 +552,10 @@ textarea {
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-  height: 100%;
   border-radius: 6px;
   text-align: LEFT;
   padding: 15px;
+  margin-bottom: 20px;
 }
 
 #newPost {
@@ -570,6 +567,8 @@ textarea {
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   text-align: center;
+  max-height: 1200px;
+  overflow-y: scroll;
 }
 
 #menuLink {
@@ -592,7 +591,6 @@ textarea {
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.58);
-
 }
 
 #menu {
@@ -625,7 +623,7 @@ textarea {
   -webkit-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
   -moz-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
   box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
-  width: 100%
+  width:100%;
 }
 
 
@@ -865,10 +863,11 @@ fieldset {
 }
 @media (min-width: 500px) {
   .wrapper {
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 3fr;
     grid-template-areas:
       "nav     content"
       "nav     content"
+      "footer  footer "
   }
   nav ul {
     display: flex;
@@ -881,6 +880,7 @@ fieldset {
     grid-template-areas:
       "nav    content content"
       "nav    content content"
+      "footer footer  footer"
    }
 }
 
@@ -1211,7 +1211,6 @@ textarea {
   -moz-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
   box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
   margin-bottom: 30px;
-  width: 96%;
   margin-left: auto;
   margin-right: auto;
 }

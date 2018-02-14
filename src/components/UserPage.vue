@@ -89,8 +89,9 @@
         </div>
       </nav>
       <article class="content">
-        <img width="100%" id="imageHeader" src="../assets/opportunities.png" />
           <div id="opportunityOverflow">
+            <img id="imageHeader" src="../assets/opportunities.png" />
+
             <div v-for="info in filteredList">
             <div id="opportunityHolder">
               <div id = 'whiteBackground'>
@@ -340,6 +341,7 @@ export default {
   -webkit-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
   -moz-box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
   box-shadow: 3px 3px 2px -1px rgba(0,0,0,0.75);
+  width: 96%;
 }
 
 

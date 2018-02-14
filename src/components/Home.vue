@@ -3,45 +3,34 @@
     <div class="home">
       <div class="splash-container">
         <div class="splash">
-          <img height="90px" src="../assets/test direct connect logo.png" /><br />
+          <h1 id="about">Welcome to Connect Direct!</h1><br />
           <router-link to="/login" exact>  <button id="learnMore3">Get Started</button></router-link>
           <div id="learnMore">Learn More<img id="arrow" src="../assets/down.png" /></div>
-        </div>
-    </div>
-    <h1 id="about">About</h1>
-    <iframe id="youtubeVid" src="https://www.youtube.com/embed/5I_IgxXYHnw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    <div class="content-wrapper">
-        <div class="content">
-          <ul class="flex-container">
-            <li class="flex-item2"><img id ="professional" width="100%" src="../assets/professional.jpg" /></li>
-            <li class="flex-item2"><br /><br /><br /><br />
-              <h1 id="getConnected">Get Connected</h1>
-                <p>Classroom Speakers</p>
-                <p>Company Tours</p>
-                <p>Competition Judges</p>
-                <p>Conference Speakers</p>
-                <p>Job Shadowing</p>
-                <p>Materials & Equipment</p>
-                <p>Mentorship Opportunities</p>
-                <p>Mock Interviews</p>
-                <p>Panelists</p>
-                <p>Project Reviews</p>
-                <p>Workshop Presenters</p>
-            </li>
-            <li class="flex-item2"><img id ="professional" width="100%" src="../assets/organization2.jpg" /></li>
-          </ul>
-          <ul class="flex-container">
-            <li class="flex-item2"><router-link to="/login"> <button id="learnMore2">User Log-In</button></router-link></li>
-            <li class="flex-item2"><img height="150px" src="../assets/test direct connect logo.png" /></li>
-            <li class="flex-item2"><router-link to="/seeker-splash"> <button id="learnMore2">Organization Log-In</button></router-link></li>
-          </ul>
         </div>
     </div>
     </div>
     <div id = "siteDescriptionHolder">
       <div id = "siteDescription">
+        <img height="100vw" src="../assets/test direct connect logo.png" /><br /><br />
         <p id="appName"> A place for professionals to connect with organizations, educators & associations looking for professional development opportunities.</p><br /><p id="descriptionText"> Whether you are a school teacher looking to expose your students to a new career path, an event planner looking for a conference speaker or workshop presenter, or a business organization looking for someone to provide company tours or serve on a business panel - Connect Direct is the best place to connect directly with professionals eager and willing to give their time and share their expertise. <br /><br /><span id="appName">Start finding new connections today!</span></p>
+        <br />
+        <router-link to="/login"> <button id="learnMore2">User Log-In</button></router-link><br /><br />
+        <br />
+        <router-link to="/seeker-splash"> <button id="learnMore2">Organization Log-In</button></router-link><br />
+        <br />
+        <p id="descriptionText">Classroom Speakers</p>
+        <p id="descriptionText">Company Tours</p>
+        <p id="descriptionText">Competition Judges</p>
+        <p id="descriptionText">Conference Speakers</p>
+        <p id="descriptionText">Job Shadowing</p>
+        <p id="descriptionText">Materials & Equipment</p>
+        <p id="descriptionText">Mentorship Opportunities</p>
+        <p id="descriptionText">Mock Interviews</p>
+        <p id="descriptionText">Panelists</p>
+        <p id="descriptionText">Project Reviews</p>
+        <p id="descriptionText">Workshop Presenters</p><br />
       </div>
+      <iframe id="youtubeVid" src="https://www.youtube.com/embed/5I_IgxXYHnw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     <div id="footer">
       <p>&copy; 2018 Connect Direct - IN DEVELOPMENT MODE! Please contact trevoryoung.web@gmail.com with any inquiries.</p>
@@ -65,7 +54,7 @@ export default {
 
 #youtubeVid {
   width: 78.2%;
-  height: 50vw;
+  height: 45vw;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
@@ -73,8 +62,8 @@ export default {
 }
 
 #about {
-  margin-top: 50px;
-  font-size: 50px;
+  margin-top: 10px;
+  font-size: 30px;
   text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
 }
 
@@ -139,22 +128,15 @@ export default {
   min-height: 500px;
   margin-left: auto;
   margin-right: auto;
-  border-top: 100px solid #2d3e49;
+  border-top: 20px solid #2d3e49;
   background-image: url("../assets/cactus3.jpeg");
   background-size: cover;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
   padding:60px;
-  margin-top: 20px;
 }
 
-#professional {
-  -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
-  -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
-  box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
-  margin-top: 50px;
-}
 
 #siteDescription {
   width: 80%;
@@ -171,35 +153,6 @@ export default {
   box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.25);
 }
 
-
-.flex-container {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row wrap;
-  justify-content: space-around;
-}
-
-.flex-item2> p{
-  font-size: 20px;
-}
-.flex-item2 {
-  padding: 10px;
-  width: 380px;
-  height: auto;
-  color: black;;
-  font-weight: bold;
-  text-align: center;
-}
-
 #arrow {
   height:25px;
   padding-left: 5px;
@@ -212,7 +165,7 @@ export default {
   background-position: center;
   overflow: hidden;
   width: 100%;
-  height: 950px;
+  height: 750px;
   top: 0;
   left: 0;
   padding-top: 20px;
